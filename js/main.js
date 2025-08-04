@@ -4,37 +4,43 @@ $(document).ready(function() {
     const speakers = [
         {
             name: "Prof. Alfred Leitenstorfer",
+            affiliation: "University of Konstanz",
             topic: "Measuring the quantum vacuum",
             image: "images/speakers/leitenstorfer.jpg"
         },
         {
             name: "Prof. Markus Oberthaler",
+            affiliation: "Heidelberg University",
             topic: "Cosmology in the laboratory",
             image: "images/speakers/oberthaler.jpg"
         },
         {
             name: "Dr. W. Giare",
+            affiliation: "University of Cambridge",
             topic: "Cosmological tensions",
             image: "images/speakers/giare.jpg"
         },
         {
-            name: "Tina Hertel",
+            name: "Ms. Tina Hertel",
             affiliation: "ETH Zurich",
             topic: "Measuring vacuum correlations",
             image: "images/speakers/herter.jpg"
         },
         {
             name: "Prof. Matthias Fink",
+            affiliation: "ESPCI Paris",
             topic: "Wave Control",
             image: "images/speakers/fink.jpeg"
         },
         {
             name: "Prof. Germain Rousseaux",
+            affiliation: "University of Poitiers",
             topic: "Hydrodynamic Analogues",
             image: "images/speakers/rousseaux.jpg"
         },
         {
             name: "Prof. Stefan Rotter",
+            affiliation: "Vienna University of Technology",
             topic: "Wave Phenomena",
             image: "images/speakers/rotter.jpg"
         }
@@ -66,7 +72,7 @@ $(document).ready(function() {
                     <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive">
                     <div class="speaker-info">
                         <h4>${speaker.name}</h4>
-                        ${speaker.affiliation ? `<h5>${speaker.affiliation}</h5>` : ''}
+                        <h5>${speaker.affiliation}</h5>
                         <p>${speaker.topic}</p>
                     </div>
                 </div>
