@@ -1,0 +1,113 @@
+/* ===================================
+   Quantum Analogues Workshop 2024
+   Redesign - "Cosmic Pastel" Theme
+   =================================== */
+
+/* === Cosmic Pastel Color Palette === */
+:root {
+    --color-accent-1: #886cc0; /* Pastel Purple */
+    --color-accent-2: #65b1d8; /* Pastel Blue */
+    --color-accent-light: #edf2ff; /* Very Light Blue/Lavender */
+    --color-glow: rgba(136, 108, 192, 0.5);
+}
+
+/* === Animated Cosmic Header Background === */
+#header {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* === Ethereal Particle Animation === */
+.quantum-particles {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+}
+
+.quantum-particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: float 25s ease-in-out infinite;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    5%, 95% { opacity: 1; }
+    100% { transform: translateY(0vh) scale(1); opacity: 0; }
+}
+
+/* === Scroll-Reveal Animations === */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.reveal-element.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* === Registration Page Styling === */
+.registration-page {
+    background: var(--bg-main);
+}
+
+.registration-container {
+    padding-top: 150px;
+}
+
+.registration-header h1 {
+    font-size: 3em;
+    background: -webkit-linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.registration-form-wrapper {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 20px 60px rgba(108, 122, 137, 0.1);
+}
+
+.form-instructions {
+    background: var(--color-accent-light);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.form-section {
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.form-section h4 {
+    border-bottom: 2px solid var(--color-accent-light);
+    padding-bottom: 15px;
+}
+
+.form-control {
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--color-accent-1);
+    box-shadow: 0 0 0 3px rgba(136, 108, 192, 0.1);
+}

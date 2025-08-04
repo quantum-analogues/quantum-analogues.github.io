@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Quantum Analogues 2025</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&family=Dosis:wght@700&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/quantum-theme.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+</head>
+<body class="registration-page">
+    <div id="preloader"></div>
+
+    <header id="header-registration">
+        <!-- Menu -->
+        <div id="menu" class="header-menu">
+            <div class="container">
+                <nav class="navbar">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html">Quantum Analogues 2025</a>
+                        <button type="button" class="navbar-toggle">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <!-- Corrected Links -->
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#speakers">Speakers</a></li>
+                            <li><a href="index.html#program">Program</a></li>
+                            <li class="current"><a href="registration.html">Registration</a></li>
+                            <li><a href="index.html#organizers">Organizers</a></li>
+                            <li><a href="index.html#venue">Venue</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="registration-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="registration-header text-center">
+                        <h1>Workshop Registration</h1>
+                        <div class="quantum-divider"></div>
+                        <p class="lead">Registration is free but mandatory. Deadline: August 31, 2024</p>
+                    </div>
+
+                    <div class="registration-form-wrapper">
+                        <form id="registrationForm" novalidate>
+                            <!-- Personal Information -->
+                            <div class="form-section">
+                                <h4><i class="fa fa-user-circle-o"></i> Personal Information</h4>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="fullName">Full Name <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="fullName" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="email">Email Address <span class="required">*</span></label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="affiliation">Affiliation <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="affiliation" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="position">Position/Title <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="position" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Research Interests -->
+                            <div class="form-section">
+                                <h4><i class="fa fa-flask"></i> Research & Motivation</h4>
+                                <div class="form-group">
+                                    <label for="description">Briefly describe your research and motivation to attend.</label>
+                                    <textarea class="form-control" id="description" rows="4"></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Additional Information -->
+                            <!-- <div class="form-section">
+                                <h4><i class="fa fa-info-circle"></i> Additional Information</h4>
+                                <div class="form-group">
+                                    <label for="poster">Would you like to present a poster?</label>
+                                    <select class="form-control" id="poster">
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes, I would like to present a poster</option>
+                                    </select>
+                                </div> -->
+                                <!-- <div class="form-group" id="posterTitleGroup" style="display: none;">
+                                    <label for="posterTitle">Poster Title (tentative)</label>
+                                    <input type="text" class="form-control" id="posterTitle">
+                                </div>
+                            </div> -->
+
+                            <div class="form-actions text-center">
+                                <button type="submit" class="btn btn-quantum btn-lg">Submit Registration</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

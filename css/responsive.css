@@ -1,0 +1,38 @@
+/* ===================================
+   Quantum Analogues Workshop 2024
+   Redesign - Responsive Styles
+   =================================== */
+
+/* === Medium Devices (Tablets, 768px and up) === */
+@media (max-width: 991.98px) {
+    .entry-title { font-size: 3em; }
+    .quantum-header h5 { font-size: 1.3em; }
+    .speaker-photo { margin-top: 30px; }
+}
+
+/* === Small Devices (Phones, up to 767.98px) === */
+@media (max-width: 767.98px) {
+    body { font-size: 15px; }
+    .box, section { padding: 60px 0; }
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2em; }
+
+    /* Header */
+    #header { min-height: 600px; }
+    .entry-title { font-size: 2.2em; line-height: 1.2; }
+    .quantum-header h5 { font-size: 1.1em; }
+    .quantum-header { padding: 20px; }
+
+    /* Nav */
+    .navbar-nav { background: white; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .navbar-nav a { display: block; width: 100%; text-align: center; }
+
+    /* Cards */
+    .speaker-item, .organizer-card, .venue-card { margin-bottom: 30px; }
+    .speaker-photo { margin-top: 0; }
+    .speaker-card { padding-top: 30px; }
+
+    /* Registration Form */
+    .registration-form-wrapper { padding: 20px; }
+    .form-section { padding: 20px; }
+}

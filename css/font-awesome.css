@@ -1,0 +1,29 @@
+/* Minimal Font Awesome Setup */
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.fa-lg { font-size: 1.33333333em; }
+.fa-2x { font-size: 2em; }
+
+/* Using inline SVG for a few key icons to avoid 404s */
+.fa-bars:before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='currentColor' d='M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 1em 1em;
+}
+
+.fa-user-circle-o:before { content: '👤'; }
+.fa-flask:before { content: '🧪'; }
+.fa-info-circle:before { content: 'ℹ️'; }
+.fa-university:before { content: '🏛️'; }
+.fa-bus:before { content: '🚌'; }
+.fa-calendar:before, .fa-calendar-check-o:before, .fa-calendar-o:before { content: '📅'; }
