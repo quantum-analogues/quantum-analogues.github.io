@@ -112,6 +112,11 @@
             animation: spin 1s linear infinite;
         }
 
+        /* Add this missing rule to hide preloader when loaded */
+        body.loaded #preloader {
+            display: none;
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -280,9 +285,11 @@
         }
 
         .speaker-card img {
-            width: 100%;
+            width: 250px;
             height: 250px;
+            border-radius: 50%;
             object-fit: cover;
+            margin: 0 auto 20px;
         }
 
         .speaker-info {
@@ -492,7 +499,7 @@
                     <div class="quantum-divider reveal-element"></div>
                 </div>
                 <div class="row" id="speakerList">
-                    <!-- Speakers will be inserted here by JS -->
+                    <!-- Speakers are inserted by the inline script below -->
                 </div>
             </div>
         </section>
@@ -534,7 +541,7 @@
                     <div class="quantum-divider reveal-element"></div>
                 </div>
                 <div class="row" id="organizerList">
-                    <!-- Organizers will be inserted here by JS -->
+                    <!-- Organizers are inserted by the inline script below -->
                 </div>
             </div>
         </section>
@@ -591,41 +598,49 @@
 
     <script>
         $(document).ready(function() {
+            console.log("Script running in index.html");
+
             // Speaker Data
             const speakers = [
                 {
                     name: "Prof. Alfred Leitenstorfer",
+                    affiliation: "University of Konstanz",
                     topic: "Measuring the quantum vacuum",
                     image: "images/speakers/leitenstorfer.jpg"
                 },
                 {
                     name: "Prof. Markus Oberthaler",
+                    affiliation: "Heidelberg University",
                     topic: "Cosmology in the laboratory",
                     image: "images/speakers/oberthaler.jpg"
                 },
                 {
                     name: "Dr. W. Giare",
+                    affiliation: "University of Cambridge",
                     topic: "Cosmological tensions",
                     image: "images/speakers/giare.jpg"
                 },
                 {
-                    name: "Tina Hertel",
+                    name: "Ms. Tina Hertel",
                     affiliation: "ETH Zurich",
                     topic: "Measuring vacuum correlations",
                     image: "images/speakers/herter.jpg"
                 },
                 {
                     name: "Prof. Matthias Fink",
+                    affiliation: "ESPCI Paris",
                     topic: "Wave Control",
                     image: "images/speakers/fink.jpeg"
                 },
                 {
                     name: "Prof. Germain Rousseaux",
+                    affiliation: "University of Poitiers",
                     topic: "Hydrodynamic Analogues",
                     image: "images/speakers/rousseaux.jpg"
                 },
                 {
                     name: "Prof. Stefan Rotter",
+                    affiliation: "Vienna University of Technology",
                     topic: "Wave Phenomena",
                     image: "images/speakers/rotter.jpg"
                 }
@@ -647,19 +662,24 @@
 
             // Generate Speaker Cards
             const speakerList = $('#speakerList');
-            speakers.forEach(speaker => {
+            speakers.forEach((speaker, index) => {
                 const speakerCard = `
                     <div class="col-md-4 col-sm-6 reveal-element">
                         <div class="speaker-card">
-                            <img src="${speaker.image}" alt="${speaker.name}" class="img-fluid" style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px;">
+                            <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive">
                             <div class="speaker-info">
                                 <h4>${speaker.name}</h4>
-                                ${speaker.affiliation ? `<h5>${speaker.affiliation}</h5>` : ''}
+                                <h5>${speaker.affiliation}</h5>
                                 <p>${speaker.topic}</p>
                             </div>
                         </div>
                     </div>`;
                 speakerList.append(speakerCard);
+                
+                // After every 3rd speaker, add a clearing div to fix alignment
+                if ((index + 1) % 3 === 0) {
+                    speakerList.append('<div class="clearfix visible-md-block visible-lg-block"></div>');
+                }
             });
 
             // Generate Organizer Cards
@@ -667,33 +687,41 @@
             organizers.forEach(organizer => {
                 const organizerCard = `
                     <div class="col-md-6 col-sm-6 reveal-element">
-                        <div class="organizer-card">
-                            <img src="${organizer.image}" alt="${organizer.name}" class="img-fluid" style="width: 350px; height: 350px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px;">
-                            <h4>${organizer.name}</h4>
-                            <p>${organizer.affiliation}</p>
+                        <div class="speaker-card">
+                            <img src="${organizer.image}" alt="${organizer.name}" class="img-responsive">
+                            <div class="speaker-info">
+                                <h4>${organizer.name}</h4>
+                                <h5>${organizer.affiliation}</h5>
+                            </div>
                         </div>
                     </div>`;
                 organizerList.append(organizerCard);
             });
 
-            // Preloader
+            // Preloader - Fix for the loading issue
             setTimeout(function() {
-                $('#preloader').fadeOut(500, function() {
-                    $(this).remove();
-                });
+                $('body').addClass('loaded');
+                console.log("Preloader removed");
             }, 1000);
 
             // Header Slider
-            $('.header-slider .slides').imagesLoaded(function() {
-                $('.header-slider').flexslider({
-                    animation: "fade",
-                    controlNav: false,
-                    directionNav: false,
-                    slideshowSpeed: 4000,
-                    animationSpeed: 1000,
-                    pauseOnAction: false,
-                    smoothHeight: true
+            if ($('.header-slider').length) {
+                $('.header-slider .slides').imagesLoaded(function() {
+                    $('.header-slider').flexslider({
+                        animation: "fade",
+                        controlNav: false,
+                        directionNav: false,
+                        slideshowSpeed: 4000,
+                        animationSpeed: 1000,
+                        pauseOnAction: false,
+                        smoothHeight: true
+                    });
                 });
+            }
+
+            // Mobile Menu
+            $('.navbar-toggler').on('click', function() {
+                $('#menu').toggleClass('open-menu');
             });
 
             // Smooth Scrolling

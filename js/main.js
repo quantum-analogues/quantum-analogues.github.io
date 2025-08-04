@@ -63,7 +63,7 @@ $(document).ready(function() {
     // --- Dynamic Card Generation ---
 
     // Generate and inject Speaker Cards with layout fix
-    const speakerList = $('.speaker-list');
+    const speakerList = $('#speakerList');
     speakers.forEach((speaker, index) => {
         // Build the speaker card HTML
         const speakerCard = `
@@ -87,7 +87,7 @@ $(document).ready(function() {
     });
 
     // Generate and inject Organizer Cards
-    const organizerList = $('.organizer-list');
+    const organizerList = $('#organizerList');
     organizers.forEach(organizer => {
         // Build the organizer card HTML using the same structure as speaker cards
         const organizerCard = `
