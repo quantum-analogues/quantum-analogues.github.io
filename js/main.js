@@ -44,11 +44,13 @@ $(document).ready(function() {
     const organizers = [
         {
             name: "Prof. Alexandre Tkatchenko",
-            affiliation: "University of Luxembourg"
+            affiliation: "University of Luxembourg",
+            image: "images/speakers/alex.jpg"
         },
         {
             name: "Prof. Ulf Leonhardt",
-            affiliation: "University of Luxembourg"
+            affiliation: "University of Luxembourg",
+            image: "images/speakers/ulf.jpg"
         }
     ];
 
@@ -81,16 +83,19 @@ $(document).ready(function() {
     // Generate and inject Organizer Cards
     const organizerList = $('.organizer-list');
     organizers.forEach(organizer => {
+        // Build the organizer card HTML using the same structure as speaker cards
         const organizerCard = `
-            <div class="col-md-4 col-sm-6 reveal-element">
-                <div class="organizer-card">
-                    <h4>${organizer.name}</h4>
-                    <p>${organizer.affiliation}</p>
+            <div class="col-md-6 col-sm-6 reveal-element">
+                <div class="speaker-card">
+                    <img src="${organizer.image}" alt="${organizer.name}" class="img-responsive">
+                    <div class="speaker-info">
+                        <h4>${organizer.name}</h4>
+                        <p>${organizer.affiliation}</p>
+                    </div>
                 </div>
             </div>`;
         organizerList.append(organizerCard);
     });
-
 
     // --- Basic Website Functionality (Preloader, Slider, Menu, etc.) ---
 
