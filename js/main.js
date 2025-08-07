@@ -43,6 +43,12 @@ $(document).ready(function() {
             affiliation: "Vienna University of Technology",
             topic: "Wave Phenomena",
             image: "images/speakers/rotter.jpg"
+        },
+        {
+            name: "Prof. Jörn Dunkel",
+            affiliation: "Massachusetts Institute of Technology",
+            topic: "TBD",
+            image: "images/speakers/dunkel.png"
         }
     ];
 

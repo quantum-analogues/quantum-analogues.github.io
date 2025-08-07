@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Quantum Analogues - Brainstorm Workshop - University of Luxembourg</title>
     <meta name="description" content="A workshop on the intersection of cosmology and condensed matter, from black holes to Bose-Einstein condensates.">
 
@@ -213,6 +213,22 @@
             background: var(--color-accent-light);
         }
 
+        .navbar-toggler {
+            border: none;
+            padding: 4px 8px;
+            font-size: 1.25rem;
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler i {
+            color: var(--text-primary);
+        }
+
         /* --- Header Content --- */
         .header-cta {
             z-index: 10;
@@ -267,6 +283,12 @@
         }
 
         /* --- Speaker Cards --- */
+        .speaker-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         .speaker-card {
             background: white;
             border-radius: 16px;
@@ -277,11 +299,14 @@
             transition: all 0.3s ease;
             height: 100%;
             margin-bottom: 30px;
+            cursor: pointer;
+            position: relative;
         }
 
         .speaker-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 30px rgba(108, 122, 137, 0.1);
+            border-color: var(--color-accent-1);
         }
 
         .speaker-card img {
@@ -290,6 +315,11 @@
             border-radius: 50%;
             object-fit: cover;
             margin: 0 auto 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .speaker-card:hover img {
+            transform: scale(1.05);
         }
 
         .speaker-info {
@@ -298,6 +328,11 @@
 
         .speaker-info h4 {
             margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .speaker-card:hover .speaker-info h4 {
+            color: var(--color-accent-1);
         }
 
         .speaker-info h5 {
@@ -311,7 +346,31 @@
             color: var(--color-accent-1);
             font-style: italic;
             font-weight: 600;
-            margin-bottom: 0;
+            margin-bottom: 15px;
+        }
+
+        .click-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: var(--color-accent-1);
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .speaker-card:hover .click-indicator {
+            opacity: 1;
+        }
+
+        .click-indicator i {
+            transition: transform 0.3s ease;
+        }
+
+        .speaker-card:hover .click-indicator i {
+            transform: translateX(5px);
         }
 
         /* --- Venue Cards --- */
@@ -399,22 +458,220 @@
 
         /* --- Responsive Styles --- */
         @media (max-width: 991.98px) {
-            .entry-title { font-size: 3em; }
-            .quantum-header h5 { font-size: 1.3em; }
+            .entry-title { font-size: 2.5em; }
+            .quantum-header h5 { font-size: 1.2em; }
+            .quantum-header { padding: 30px 20px; }
+            
+            .speaker-card img {
+                width: 200px;
+                height: 200px;
+            }
         }
 
         @media (max-width: 767.98px) {
             body { font-size: 15px; }
             .box, section { padding: 60px 0; }
-            h1 { font-size: 2.5em; }
+            h1 { font-size: 2.2em; }
             h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
+            h4 { font-size: 1.3em; }
 
-            #header { min-height: 600px; }
-            .entry-title { font-size: 2.2em; line-height: 1.2; }
-            .quantum-header h5 { font-size: 1.1em; }
-            .quantum-header { padding: 20px; }
+            #header { min-height: 100vh; }
+            .entry-title { 
+                font-size: 2.5em; 
+                line-height: 1.2; 
+                margin-bottom: 15px;
+            }
+            .quantum-header {
+                padding: 25px 15px;
+                margin: 0 15px;
+                max-width: calc(100% - 30px);
+            }
+            .quantum-header p {
+                font-size: 1em;
+                margin-bottom: 15px;
+            }
+            .quantum-header h5 { 
+                font-size: 1.1em; 
+                margin-bottom: 20px;
+            }
             
-            .speaker-card, .organizer-card, .venue-card { margin-bottom: 30px; }
+            /* Mobile Navigation */
+            .navbar-brand {
+                font-size: 1.3em;
+            }
+            
+            .navbar-nav .nav-link {
+                padding: 12px 20px;
+                font-size: 16px;
+                border-radius: 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link.active {
+                background: var(--color-accent-1);
+                color: white;
+            }
+            
+            /* Mobile Cards */
+            .speaker-card, .organizer-card, .venue-card { 
+                margin-bottom: 20px; 
+            }
+            
+            .speaker-card {
+                border-radius: 12px;
+            }
+            
+            .speaker-card img {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 15px;
+            }
+            
+            .speaker-info {
+                padding: 15px;
+            }
+            
+            .speaker-info h4 {
+                font-size: 1.2em;
+                margin-bottom: 8px;
+            }
+            
+            .speaker-info h5 {
+                font-size: 0.9em;
+                margin-bottom: 8px;
+            }
+            
+            .speaker-info p {
+                font-size: 0.9em;
+                margin-bottom: 12px;
+            }
+            
+            .click-indicator {
+                font-size: 0.85em;
+            }
+            
+            /* Mobile Venue Cards */
+            .venue-card {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            
+            .venue-card h3 {
+                font-size: 1.3em;
+            }
+            
+            .venue-card h4 {
+                font-size: 1.2em;
+            }
+            
+            /* Mobile Buttons */
+            .btn-quantum {
+                padding: 12px 30px;
+                font-size: 14px;
+                border-radius: 25px;
+                display: block;
+                text-align: center;
+                max-width: 200px;
+                margin: 20px auto 0;
+            }
+            
+            /* Mobile Section Titles */
+            .section-title {
+                margin-bottom: 50px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+            
+            /* Mobile Contact Section */
+            #contact h3 {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+            
+            #contact p {
+                font-size: 1em;
+            }
+            
+            /* Mobile Footer */
+            #footer {
+                padding: 40px 0;
+            }
+            
+            .footer-logo {
+                max-width: 150px;
+                height: auto;
+            }
+            
+            /* Mobile Grid Fixes */
+            .col-md-4,
+            .col-md-6 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .entry-title { 
+                font-size: 2.2em; 
+            }
+            
+            .quantum-header {
+                padding: 20px 12px;
+                margin: 0 10px;
+                max-width: calc(100% - 20px);
+            }
+            
+            .quantum-header p {
+                font-size: 0.9em;
+            }
+            
+            .quantum-header h5 {
+                font-size: 1em;
+            }
+            
+            .speaker-card img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .speaker-info h4 {
+                font-size: 1.1em;
+            }
+            
+            .venue-card {
+                padding: 15px;
+            }
+            
+            .btn-quantum {
+                padding: 10px 25px;
+                font-size: 13px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6em;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) {
+            .click-indicator {
+                opacity: 1;
+            }
+            
+            .speaker-card,
+            .organizer-card {
+                transform: none;
+            }
+            
+            .speaker-card:active,
+            .organizer-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
         }
     </style>
 </head>
@@ -600,79 +857,101 @@
         $(document).ready(function() {
             console.log("Script running in index.html");
 
-            // Speaker Data
+            // Speaker Data - NOW WITH CLICKABLE LINKS!
             const speakers = [
                 {
                     name: "Prof. Alfred Leitenstorfer",
                     affiliation: "University of Konstanz",
                     topic: "Measuring the quantum vacuum",
-                    image: "images/speakers/leitenstorfer.jpg"
+                    image: "images/speakers/leitenstorfer.jpg",
+                    link: "https://www.leitenstorfer.uni-konstanz.de/personen/prof-dr-alfred-leitenstorfer/"
                 },
                 {
                     name: "Prof. Markus Oberthaler",
                     affiliation: "Heidelberg University",
                     topic: "Cosmology in the laboratory",
-                    image: "images/speakers/oberthaler.jpg"
+                    image: "images/speakers/oberthaler.jpg",
+                    link: "https://www.kip.uni-heidelberg.de/personen/552"
                 },
                 {
-                    name: "Dr. W. Giare",
+                    name: "Dr. William Giarè",
                     affiliation: "University of Cambridge",
                     topic: "Cosmological tensions",
-                    image: "images/speakers/giare.jpg"
+                    image: "images/speakers/giare.jpg",
+                    link: "https://www.williamgiare.com/"
                 },
                 {
                     name: "Ms. Tina Hertel",
                     affiliation: "ETH Zurich",
                     topic: "Measuring vacuum correlations",
-                    image: "images/speakers/herter.jpg"
+                    image: "images/speakers/herter.jpg",
+                    link: "https://google.com"
                 },
                 {
                     name: "Prof. Matthias Fink",
                     affiliation: "ESPCI Paris",
                     topic: "Wave Control",
-                    image: "images/speakers/fink.jpeg"
+                    image: "images/speakers/fink.jpeg",
+                    link: "https://en.wikipedia.org/wiki/Mathias_Fink"
                 },
                 {
                     name: "Prof. Germain Rousseaux",
                     affiliation: "University of Poitiers",
                     topic: "Hydrodynamic Analogues",
-                    image: "images/speakers/rousseaux.jpg"
+                    image: "images/speakers/rousseaux.jpg",
+                    link: "https://germain-rousseaux.cnrs.fr/"
                 },
                 {
                     name: "Prof. Stefan Rotter",
                     affiliation: "Vienna University of Technology",
                     topic: "Wave Phenomena",
-                    image: "images/speakers/rotter.jpg"
+                    image: "images/speakers/rotter.jpg",
+                    link: "https://rottergroup.itp.tuwien.ac.at/"
+                },
+                {
+                    name: "Prof. Jörn Dunkel",
+                    affiliation: "Massachusetts Institute of Technology",
+                    topic: "TBD",
+                    image: "images/speakers/dunkel.png",
+                    link: "https://math.mit.edu/~dunkel/"
                 }
             ];
 
-            // Organizer Data
+            // Organizer Data - NOW WITH CLICKABLE LINKS!
             const organizers = [
                 {
                     name: "Prof. Alexandre Tkatchenko",
                     affiliation: "University of Luxembourg",
-                    image: "images/speakers/alex.jpg"
+                    image: "images/speakers/alex.jpg",
+                    link: "https://www.uni.lu/fstm-en/people/alexandre-tkatchenko/"
                 },
                 {
                     name: "Prof. Ulf Leonhardt",
                     affiliation: "University of Luxembourg",
-                    image: "images/speakers/ulf.jpg"
+                    image: "images/speakers/ulf.jpg",
+                    link: "https://www.weizmann.ac.il/complex/prof-ulf-leonhardt"
                 }
             ];
 
-            // Generate Speaker Cards
+            // Generate CLICKABLE Speaker Cards
             const speakerList = $('#speakerList');
             speakers.forEach((speaker, index) => {
                 const speakerCard = `
                     <div class="col-md-4 col-sm-6 reveal-element">
-                        <div class="speaker-card">
-                            <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive">
-                            <div class="speaker-info">
-                                <h4>${speaker.name}</h4>
-                                <h5>${speaker.affiliation}</h5>
-                                <p>${speaker.topic}</p>
+                        <a href="${speaker.link}" target="_blank" class="speaker-link">
+                            <div class="speaker-card">
+                                <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive">
+                                <div class="speaker-info">
+                                    <h4>${speaker.name}</h4>
+                                    <h5>${speaker.affiliation}</h5>
+                                    <p>${speaker.topic}</p>
+                                    <div class="click-indicator">
+                                        <i class="fas fa-arrow-right"></i>
+                                        <span>Learn More</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>`;
                 speakerList.append(speakerCard);
                 
@@ -682,18 +961,24 @@
                 }
             });
 
-            // Generate Organizer Cards
+            // Generate CLICKABLE Organizer Cards
             const organizerList = $('#organizerList');
             organizers.forEach(organizer => {
                 const organizerCard = `
                     <div class="col-md-6 col-sm-6 reveal-element">
-                        <div class="speaker-card">
-                            <img src="${organizer.image}" alt="${organizer.name}" class="img-responsive">
-                            <div class="speaker-info">
-                                <h4>${organizer.name}</h4>
-                                <h5>${organizer.affiliation}</h5>
+                        <a href="${organizer.link}" target="_blank" class="speaker-link">
+                            <div class="speaker-card">
+                                <img src="${organizer.image}" alt="${organizer.name}" class="img-responsive">
+                                <div class="speaker-info">
+                                    <h4>${organizer.name}</h4>
+                                    <h5>${organizer.affiliation}</h5>
+                                    <div class="click-indicator">
+                                        <i class="fas fa-arrow-right"></i>
+                                        <span>Learn More</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>`;
                 organizerList.append(organizerCard);
             });
@@ -719,20 +1004,40 @@
                 });
             }
 
-            // Mobile Menu
+            // Mobile Menu Toggle
             $('.navbar-toggler').on('click', function() {
                 $('#menu').toggleClass('open-menu');
             });
+            
+            // Close mobile menu when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.navbar').length) {
+                    $('.navbar-collapse').removeClass('show');
+                    $('#menu').removeClass('open-menu');
+                }
+            });
+            
+            // Prevent mobile menu close when clicking inside
+            $('.navbar-collapse').on('click', function(e) {
+                e.stopPropagation();
+            });
 
-            // Smooth Scrolling
+            // Smooth Scrolling (with mobile-friendly offset)
             $('a[href*="#"]:not([href="#"])').on('click', function() {
                 if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
                     var target = $(this.hash);
                     target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
                     if (target.length) {
+                        // Different offset for mobile vs desktop
+                        var offset = $(window).width() < 768 ? 80 : 70;
+                        
                         $('html, body').animate({
-                            scrollTop: target.offset().top - 70
+                            scrollTop: target.offset().top - offset
                         }, 1000);
+                        
+                        // Close mobile menu if open
+                        $('.navbar-collapse').removeClass('show');
+                        
                         return false;
                     }
                 }
@@ -758,9 +1063,9 @@
             // Initial check
             revealOnScroll();
             
-            // Active menu highlighting
+            // Active menu highlighting (mobile-friendly)
             $(window).scroll(function() {
-                var scrollDistance = $(window).scrollTop() + 100;
+                var scrollDistance = $(window).scrollTop() + ($(window).width() < 768 ? 100 : 80);
                 
                 // Highlight based on section position
                 $('section').each(function(i) {
@@ -770,6 +1075,11 @@
                     }
                 });
             }).scroll();
+            
+            // Improve touch performance on mobile
+            if ('ontouchstart' in window) {
+                $('body').addClass('touch-device');
+            }
         });
     </script>
 </body>
