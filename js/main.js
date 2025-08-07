@@ -15,13 +15,13 @@ $(document).ready(function() {
             image: "images/speakers/oberthaler.jpg"
         },
         {
-            name: "Dr. W. Giare",
-            affiliation: "University of Cambridge",
+            name: "Dr. William Giarè",
+            affiliation: "University of Sheffield",
             topic: "Cosmological tensions",
             image: "images/speakers/giare.jpg"
         },
         {
-            name: "Ms. Tina Hertel",
+            name: "Ms. Alexa Marina Herter",
             affiliation: "ETH Zurich",
             topic: "Measuring vacuum correlations",
             image: "images/speakers/herter.jpg"
