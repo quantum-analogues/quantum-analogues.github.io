@@ -298,7 +298,7 @@
             transition: all 0.3s ease;
             height: 100%;
             margin-bottom: 30px;
-            cursor: pointer;
+            cursor: default;
             position: relative;
         }
 
@@ -315,6 +315,7 @@
             object-fit: cover;
             margin: 0 auto 20px;
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .speaker-card:hover img {
@@ -329,47 +330,34 @@
             margin-bottom: 5px;
             transition: color 0.3s ease;
         }
-
-        .speaker-card:hover .speaker-info h4 {
-            color: var(--color-accent-1);
-        }
-
-        .speaker-info h5 {
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-
+        
         .speaker-info p {
             color: var(--color-accent-1);
             font-style: italic;
             font-weight: 600;
             margin-bottom: 15px;
+            min-height: 44px; /* Reserve space for topic */
         }
 
-        .click-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .btn-abstract {
+            background: var(--color-accent-light);
             color: var(--color-accent-1);
+            border: 1px solid var(--color-accent-light);
+            border-radius: 20px;
+            padding: 8px 15px;
             font-weight: 600;
             font-size: 0.9em;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .speaker-card:hover .click-indicator {
-            opacity: 1;
+        .btn-abstract:hover {
+            background: var(--color-accent-1);
+            color: white;
+            border-color: var(--color-accent-1);
         }
-
-        .click-indicator i {
-            transition: transform 0.3s ease;
-        }
-
-        .speaker-card:hover .click-indicator i {
-            transform: translateX(5px);
+        .btn-abstract i {
+            margin-left: 5px;
         }
         
         /* --- Schedule Styles --- */
@@ -428,6 +416,7 @@
             font-weight: 500;
             color: var(--text-secondary);
             font-size: 1.1em;
+            margin-bottom: 10px;
         }
         .schedule-details .session-title {
             font-weight: 700;
@@ -450,6 +439,85 @@
         .schedule-entry .fa-icon {
             margin-right: 8px;
             color: var(--color-accent-2);
+        }
+
+        /* --- Abstract Modal --- */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1040;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-content-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            z-index: 1050;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: none;
+            opacity: 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal-backdrop.show,
+        .modal-content-wrapper.show {
+            display: block;
+            opacity: 1;
+        }
+        .modal-content-wrapper.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .modal-title {
+            font-size: 1.5em;
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+        .modal-close {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1;
+            color: #000;
+            text-shadow: none;
+            opacity: .5;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 0;
+        }
+        .modal-close:hover {
+            opacity: .8;
+        }
+        .modal-body .abstract-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-accent-1);
+            font-size: 1.2em;
+        }
+        .modal-body .abstract-text {
+            text-align: justify;
+            line-height: 1.8;
+            color: var(--text-primary);
         }
 
         /* --- Venue Cards --- */
@@ -627,10 +695,6 @@
                 margin-bottom: 12px;
             }
             
-            .click-indicator {
-                font-size: 0.85em;
-            }
-            
             /* Mobile Venue Cards */
             .venue-card {
                 padding: 20px;
@@ -755,10 +819,6 @@
 
         /* Touch-friendly improvements */
         @media (hover: none) {
-            .click-indicator {
-                opacity: 1;
-            }
-            
             .speaker-card,
             .organizer-card {
                 transform: none;
@@ -1105,8 +1165,9 @@
                              <div class="schedule-entry">
                                 <div class="schedule-time">09:00 - 09:40</div>
                                 <div class="schedule-details">
-                                    <h4>TBD</h4>
+                                    <h4>What makes the quantum weirdness useful?</h4>
                                     <p class="speaker-name">Dr. Matthieu Sarkis</p>
+                                    <button class="btn-abstract" data-speaker-id="sarkis">Read Abstract <i class="fas fa-search-plus"></i></button>
                                 </div>
                             </div>
                             <div class="schedule-entry">
@@ -1199,6 +1260,19 @@
         </div>
     </footer>
 
+    <!-- Abstract Modal -->
+    <div class="modal-backdrop" id="abstractModalBackdrop"></div>
+    <div class="modal-content-wrapper" id="abstractModal">
+        <div class="modal-header">
+            <h3 id="modalSpeakerName" class="modal-title">Speaker Name</h3>
+            <button type="button" class="modal-close" id="modalCloseBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <h4 id="modalTalkTitle" class="abstract-title">Talk Title</h4>
+            <p id="modalAbstractText" class="abstract-text">Abstract goes here...</p>
+        </div>
+    </div>
+
     <!-- External JS Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
@@ -1209,9 +1283,10 @@
         $(document).ready(function() {
             console.log("Script running in index.html");
 
-            // EXPANDED Speaker Data
+            // Speaker Data with IDs and Abstract
             const speakers = [
                 {
+                    id: "leitenstorfer",
                     name: "Prof. Alfred Leitenstorfer",
                     affiliation: "University of Konstanz",
                     topic: "Measuring the quantum vacuum",
@@ -1219,6 +1294,7 @@
                     link: "https://www.leitenstorfer.uni-konstanz.de/personen/prof-dr-alfred-leitenstorfer/"
                 },
                 {
+                    id: "oberthaler",
                     name: "Prof. Markus Oberthaler",
                     affiliation: "Heidelberg University",
                     topic: "Cosmology in the laboratory",
@@ -1226,6 +1302,7 @@
                     link: "https://www.kip.uni-heidelberg.de/personen/552"
                 },
                 {
+                    id: "chenu",
                     name: "Prof. Aurelia Chenu",
                     affiliation: "University of Luxembourg",
                     topic: "TBD",
@@ -1233,6 +1310,7 @@
                     link: "https://www.uni.lu/fstm-en/people/aurelia-chenu/"
                 },
                 {
+                    id: "giare",
                     name: "Dr. William Giarè",
                     affiliation: "University of Sheffield",
                     topic: "Cosmological tensions",
@@ -1240,6 +1318,7 @@
                     link: "https://www.williamgiare.com/"
                 },
                 {
+                    id: "herter",
                     name: "Ms. Alexa Marina Herter",
                     affiliation: "ETH Zurich",
                     topic: "Measuring vacuum correlations",
@@ -1247,6 +1326,7 @@
                     link: "https://www.phys.ethz.ch/the-department/people/person-detail.MjY5OTcw.TGlzdC81MTUsMTE3MjU5OTI5OQ==.html"
                 },
                 {
+                    id: "tkatchenko",
                     name: "Prof. Alexandre Tkatchenko",
                     affiliation: "University of Luxembourg",
                     topic: "The right and wrong with quantum field theory",
@@ -1254,6 +1334,7 @@
                     link: "https://www.uni.lu/fstm-en/people/alexandre-tkatchenko/"
                 },
                 {
+                    id: "fink",
                     name: "Prof. Matthias Fink",
                     affiliation: "ESPCI Paris",
                     topic: "Wave Control",
@@ -1261,6 +1342,7 @@
                     link: "https://en.wikipedia.org/wiki/Mathias_Fink"
                 },
                 {
+                    id: "rousseaux",
                     name: "Prof. Germain Rousseaux",
                     affiliation: "University of Poitiers",
                     topic: "Hydrodynamic Analogues",
@@ -1268,13 +1350,16 @@
                     link: "https://germain-rousseaux.cnrs.fr/"
                 },
                 {
+                    id: "sarkis",
                     name: "Dr. Matthieu Sarkis",
                     affiliation: "University of Luxembourg",
-                    topic: "TBD",
+                    topic: "What makes the quantum weirdness useful?",
                     image: "images/speakers/sarkis.jpg",
-                    link: "https://www.uni.lu/fstm-en/people/matthieu-sarkis/"
+                    link: "https://www.uni.lu/fstm-en/people/matthieu-sarkis/",
+                    abstract: "Quantum technologies draw their power from a specific kind of nonclassicality often called 'magic'—patterns in a quantum state that can’t be explained by ordinary (classical) probabilities. Unlike entanglement alone, magic is a practical marker of when a quantum system becomes hard to simulate and when truly quantum operations appear. In this talk, after introducing a standard measure of magic in finite-dimensional quantum systems called the Stabilizer Renyi Entropy (SRE), I will provide a first-principle 'derivation' of this quantity. Our approach allows us then to naturally propose a measure of magic for hybrid boson-fermion systems. We also show how the notion of magic, rooted in quantum information theory, can be relevant to quantum chemistry and bond formation"
                 },
                 {
+                    id: "leonhardt",
                     name: "Prof. Ulf Leonhardt",
                     affiliation: "Weizmann Institute of Science",
                     topic: "TBD",
@@ -1282,6 +1367,7 @@
                     link: "https://www.weizmann.ac.il/complex/prof-ulf-leonhardt"
                 },
                 {
+                    id: "rotter",
                     name: "Prof. Stefan Rotter",
                     affiliation: "Vienna University of Technology",
                     topic: "Wave Phenomena",
@@ -1289,6 +1375,7 @@
                     link: "https://rottergroup.itp.tuwien.ac.at/"
                 },
                 {
+                    id: "dunkel",
                     name: "Prof. Jörn Dunkel",
                     affiliation: "Massachusetts Institute of Technology",
                     topic: "TBD",
@@ -1296,6 +1383,7 @@
                     link: "https://math.mit.edu/~dunkel/"
                 },
                 {
+                    id: "skupin",
                     name: "Prof. Alex Skupin",
                     affiliation: "University of Luxembourg",
                     topic: "TBD",
@@ -1303,6 +1391,7 @@
                     link: "https://www.uni.lu/lcsb-en/people/alexander-skupin/"
                 },
                 {
+                    id: "karimpour",
                     name: "Dr. Mohammad Reza Karimpour",
                     affiliation: "University of Luxembourg",
                     topic: "TBD",
@@ -1330,22 +1419,22 @@
             // Generate CLICKABLE Speaker Cards
             const speakerList = $('#speakerList');
             speakers.forEach((speaker, index) => {
+                const abstractButton = speaker.abstract ?
+                    `<button class="btn-abstract" data-speaker-id="${speaker.id}">Read Abstract <i class="fas fa-search-plus"></i></button>` : '';
+
                 const speakerCard = `
                     <div class="col-md-4 col-sm-6 reveal-element">
-                        <a href="${speaker.link}" target="_blank" class="speaker-link">
-                            <div class="speaker-card">
+                        <div class="speaker-card">
+                            <a href="${speaker.link}" target="_blank" class="speaker-link">
                                 <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive">
-                                <div class="speaker-info">
-                                    <h4>${speaker.name}</h4>
-                                    <h5>${speaker.affiliation}</h5>
-                                    <p>${speaker.topic}</p>
-                                    <div class="click-indicator">
-                                        <i class="fas fa-arrow-right"></i>
-                                        <span>Learn More</span>
-                                    </div>
-                                </div>
+                            </a>
+                            <div class="speaker-info">
+                                <h4>${speaker.name}</h4>
+                                <h5>${speaker.affiliation}</h5>
+                                <p>${speaker.topic}</p>
+                                ${abstractButton}
                             </div>
-                        </a>
+                        </div>
                     </div>`;
                 speakerList.append(speakerCard);
                 
@@ -1365,10 +1454,6 @@
                                 <div class="speaker-info">
                                     <h4>${organizer.name}</h4>
                                     <h5>${organizer.affiliation}</h5>
-                                    <div class="click-indicator">
-                                        <i class="fas fa-arrow-right"></i>
-                                        <span>Learn More</span>
-                                    </div>
                                 </div>
                             </div>
                         </a>
@@ -1395,6 +1480,39 @@
                     });
                 });
             }
+
+            // Abstract Modal Logic
+            const modal = $('#abstractModal');
+            const modalBackdrop = $('#abstractModalBackdrop');
+            const modalSpeakerName = $('#modalSpeakerName');
+            const modalTalkTitle = $('#modalTalkTitle');
+            const modalAbstractText = $('#modalAbstractText');
+
+            function openModal(speaker) {
+                modalSpeakerName.text(speaker.name);
+                modalTalkTitle.text(speaker.topic);
+                modalAbstractText.text(speaker.abstract);
+                modalBackdrop.addClass('show');
+                modal.addClass('show');
+            }
+
+            function closeModal() {
+                modalBackdrop.removeClass('show');
+                modal.removeClass('show');
+            }
+
+            // Use event delegation for dynamically added buttons
+            $(document).on('click', '.btn-abstract', function() {
+                const speakerId = $(this).data('speaker-id');
+                const speaker = speakers.find(s => s.id === speakerId);
+                if (speaker && speaker.abstract) {
+                    openModal(speaker);
+                }
+            });
+
+            $('#modalCloseBtn').on('click', closeModal);
+            modalBackdrop.on('click', closeModal);
+
 
             // Mobile Menu Toggle
             $('.navbar-toggler').on('click', function() {

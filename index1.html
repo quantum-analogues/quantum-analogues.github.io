@@ -112,7 +112,6 @@
             animation: spin 1s linear infinite;
         }
 
-        /* Add this missing rule to hide preloader when loaded */
         body.loaded #preloader {
             display: none;
         }
@@ -372,6 +371,86 @@
         .speaker-card:hover .click-indicator i {
             transform: translateX(5px);
         }
+        
+        /* --- Schedule Styles --- */
+        .schedule-tabs {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .schedule-tabs .nav-link {
+            border: none;
+            border-bottom: 4px solid transparent;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 1.2em;
+            padding: 15px 25px;
+            transition: all 0.3s ease;
+            margin-bottom: -2px;
+        }
+        .schedule-tabs .nav-link.active {
+            color: var(--color-accent-1);
+            border-bottom-color: var(--color-accent-1);
+            background: transparent;
+        }
+        .schedule-day-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .schedule-entry {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .schedule-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .schedule-time {
+            flex: 0 0 120px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.1em;
+            padding-right: 20px;
+        }
+        .schedule-details {
+            flex: 1;
+        }
+        .schedule-details h4 {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+        .schedule-details .speaker-name {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+        .schedule-details .session-title {
+            font-weight: 700;
+            color: var(--color-accent-2);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        .schedule-details .session-chair {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        .schedule-entry.break-entry .schedule-details h4,
+        .schedule-entry.discussion-entry .schedule-details h4 {
+            color: var(--color-accent-1);
+            font-weight: 700;
+        }
+        .schedule-entry .fa-icon {
+            margin-right: 8px;
+            color: var(--color-accent-2);
+        }
 
         /* --- Venue Cards --- */
         .venue-card {
@@ -586,6 +665,24 @@
                 font-size: 1.8em;
                 margin-bottom: 15px;
             }
+
+            /* Mobile Schedule */
+            .schedule-entry {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .schedule-time {
+                margin-bottom: 10px;
+                font-size: 1em;
+                flex: 0 0 auto;
+            }
+            .schedule-day-content {
+                padding: 20px;
+            }
+            .schedule-tabs .nav-link {
+                font-size: 1em;
+                padding: 12px 15px;
+            }
             
             /* Mobile Contact Section */
             #contact h3 {
@@ -730,7 +827,7 @@
 
         <div class="header-cta">
             <div class="quantum-header">
-                <p>September 15 – 16, 2025 // University of Luxembourg</p>
+                <p>September 14 – 16, 2025 // University of Luxembourg</p>
                 <h1 class="entry-title">Quantum Analogues</h1>
                 <!-- <h5>From Black Holes to Bose-Einstein Condensates</h5> -->
                 <a href="registration.html" class="btn btn-quantum" style="margin-top: 30px;">Register Now</a>
@@ -761,35 +858,290 @@
             </div>
         </section>
 
+        <!-- =========================
+        // REVISED PROGRAM SECTION
+        =========================== -->
         <section id="program" class="box">
-            <div class="container text-center">
+            <div class="container">
                 <div class="section-title">
-                    <h2 class="reveal-element">Workshop Program</h2>
+                    <h2 class="reveal-element">Workshop Schedule</h2>
                     <div class="quantum-divider reveal-element"></div>
                 </div>
-                <div class="row reveal-element">
-                    <div class="col-md-4">
-                        <div class="venue-card">
-                            <h3><i class="fas fa-calendar"></i> Day 1: Sep 14</h3>
-                            <p>Arrival Day</p>
+
+                <!-- Day Tabs -->
+                <ul class="nav nav-tabs justify-content-center schedule-tabs reveal-element" id="scheduleTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="day1-tab" data-bs-toggle="tab" data-bs-target="#day1" type="button" role="tab" aria-controls="day1" aria-selected="true">Day 1: Sep 14</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="day2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button" role="tab" aria-controls="day2" aria-selected="false">Day 2: Sep 15</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="day3-tab" data-bs-toggle="tab" data-bs-target="#day3" type="button" role="tab" aria-controls="day3" aria-selected="false">Day 3: Sep 16</button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content reveal-element" id="scheduleTabContent">
+                    <!-- Day 1: Full Day -->
+                    <div class="tab-pane fade show active" id="day1" role="tabpanel" aria-labelledby="day1-tab">
+                        <div class="schedule-day-content">
+                             <div class="schedule-entry break-entry">
+                                <div class="schedule-time">09:00 - 09:30</div>
+                                <div class="schedule-details"><h4><i class="fas fa-coffee fa-icon"></i>Registration & Welcome Coffee</h4></div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">09:30 - 09:45</div>
+                                <div class="schedule-details"><h4><i class="fas fa-microphone fa-icon"></i>Opening Remarks</h4></div>
+                            </div>
+
+                            <div class="schedule-entry">
+                                <div class="schedule-time"></div>
+                                <div class="schedule-details">
+                                    <h4 class="session-title">Session 1: Probing the Vacuum & Fields</h4>
+                                    <p class="session-chair">Session Chair: TBD</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">09:45 - 10:25</div>
+                                <div class="schedule-details">
+                                    <h4>Measuring the quantum vacuum</h4>
+                                    <p class="speaker-name">Prof. Alfred Leitenstorfer</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">10:25 - 11:05</div>
+                                <div class="schedule-details">
+                                    <h4>Measuring vacuum correlations</h4>
+                                    <p class="speaker-name">Ms. Alexa Marina Herter</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry discussion-entry">
+                                <div class="schedule-time">11:05 - 11:25</div>
+                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            </div>
+
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">11:25 - 12:10</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee & Networking Break</h4></div>
+                            </div>
+
+                            <div class="schedule-entry">
+                                <div class="schedule-time"></div>
+                                <div class="schedule-details">
+                                    <h4 class="session-title">Session 2: Cosmological Analogues</h4>
+                                    <p class="session-chair">Session Chair: TBD</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">12:10 - 12:50</div>
+                                <div class="schedule-details">
+                                    <h4>Cosmology in the laboratory</h4>
+                                    <p class="speaker-name">Prof. Markus Oberthaler</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">12:50 - 13:30</div>
+                                <div class="schedule-details">
+                                    <h4>Cosmological tensions</h4>
+                                    <p class="speaker-name">Dr. William Giarè</p>
+                                </div>
+                            </div>
+                             <div class="schedule-entry discussion-entry">
+                                <div class="schedule-time">13:30 - 13:50</div>
+                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            </div>
+
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">13:50 - 15:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
+                            </div>
+                            
+                            <div class="schedule-entry">
+                                <div class="schedule-time"></div>
+                                <div class="schedule-details">
+                                    <h4 class="session-title">Session 3: Wave Control & Hydrodynamics</h4>
+                                    <p class="session-chair">Session Chair: TBD</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">15:00 - 15:40</div>
+                                <div class="schedule-details">
+                                    <h4>Wave Control</h4>
+                                    <p class="speaker-name">Prof. Matthias Fink</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">15:40 - 16:20</div>
+                                <div class="schedule-details">
+                                    <h4>Hydrodynamic Analogues</h4>
+                                    <p class="speaker-name">Prof. Germain Rousseaux</p>
+                                </div>
+                            </div>
+                             <div class="schedule-entry discussion-entry">
+                                <div class="schedule-time">16:20 - 16:40</div>
+                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">16:40 - 17:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-sign-out-alt fa-icon"></i>End of Day 1</h4></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="venue-card">
-                            <h3><i class="fas fa-calendar-check"></i> Day 2: Sep 15</h3>
-                            <p>Full-day Workshop & Conference Dinner</p>
+
+                    <!-- Day 2: Full Day -->
+                    <div class="tab-pane fade" id="day2" role="tabpanel" aria-labelledby="day2-tab">
+                        <div class="schedule-day-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-time"></div>
+                                <div class="schedule-details">
+                                    <h4 class="session-title">Session 4: Complex Wave Phenomena</h4>
+                                    <p class="session-chair">Session Chair: TBD</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">09:00 - 09:40</div>
+                                <div class="schedule-details">
+                                    <h4>Wave Phenomena</h4>
+                                    <p class="speaker-name">Prof. Stefan Rotter</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">09:40 - 10:20</div>
+                                <div class="schedule-details">
+                                    <h4>TBD</h4>
+                                    <p class="speaker-name">Prof. Jörn Dunkel</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry discussion-entry">
+                                <div class="schedule-time">10:20 - 10:40</div>
+                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            </div>
+                            
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">10:40 - 11:25</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee & Networking Break</h4></div>
+                            </div>
+
+                            <div class="schedule-entry">
+                                <div class="schedule-time"></div>
+                                <div class="schedule-details">
+                                    <h4 class="session-title">Session 5: Theoretical & Quantum Frontiers</h4>
+                                    <p class="session-chair">Session Chair: TBD</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">11:25 - 12:05</div>
+                                <div class="schedule-details">
+                                    <h4>The right and wrong with quantum field theory</h4>
+                                    <p class="speaker-name">Prof. Alexandre Tkatchenko</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">12:05 - 12:45</div>
+                                <div class="schedule-details">
+                                    <h4>TBD</h4>
+                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry discussion-entry">
+                                <div class="schedule-time">12:45 - 13:05</div>
+                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            </div>
+
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">13:05 - 14:15</div>
+                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
+                            </div>
+                            
+                            <div class="schedule-entry">
+                                <div class="schedule-time"></div>
+                                <div class="schedule-details">
+                                    <h4 class="session-title">Session 6: Local Perspectives on Complex Systems</h4>
+                                    <p class="session-chair">Session Chair: TBD</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">14:15 - 14:55</div>
+                                <div class="schedule-details">
+                                    <h4>TBD</h4>
+                                    <p class="speaker-name">Prof. Aurelia Chenu</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">14:55 - 15:35</div>
+                                <div class="schedule-details">
+                                    <h4>TBD</h4>
+                                    <p class="speaker-name">Prof. Alex Skupin</p>
+                                </div>
+                            </div>
+                             <div class="schedule-entry discussion-entry">
+                                <div class="schedule-time">15:35 - 15:55</div>
+                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            </div>
+
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">15:55 - 17:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-sign-out-alt fa-icon"></i>End of Day 2 / Free Time</h4></div>
+                            </div>
+
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">19:00 onwards</div>
+                                <div class="schedule-details"><h4><i class="fas fa-glass-cheers fa-icon"></i>Conference Dinner</h4></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="venue-card">
-                            <h3><i class="fas fa-calendar-alt"></i> Day 3: Sep 16</h3>
-                            <p>Half-day Workshop & Departure</p>
+
+                    <!-- Day 3: Half Day -->
+                    <div class="tab-pane fade" id="day3" role="tabpanel" aria-labelledby="day3-tab">
+                        <div class="schedule-day-content">
+                             <div class="schedule-entry">
+                                <div class="schedule-time"></div>
+                                <div class="schedule-details">
+                                    <h4 class="session-title">Session 7: Emerging Topics</h4>
+                                    <p class="session-chair">Session Chair: TBD</p>
+                                </div>
+                            </div>
+                             <div class="schedule-entry">
+                                <div class="schedule-time">09:00 - 09:40</div>
+                                <div class="schedule-details">
+                                    <h4>TBD</h4>
+                                    <p class="speaker-name">Dr. Matthieu Sarkis</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">09:40 - 10:20</div>
+                                <div class="schedule-details">
+                                    <h4>TBD</h4>
+                                    <p class="speaker-name">Dr. Mohammad Reza Karimpour</p>
+                                </div>
+                            </div>
+                             <div class="schedule-entry discussion-entry">
+                                <div class="schedule-time">10:20 - 10:40</div>
+                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Final Discussion & Outlook</h4></div>
+                            </div>
+
+                             <div class="schedule-entry break-entry">
+                                <div class="schedule-time">10:40 - 11:25</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee & Networking Break</h4></div>
+                            </div>
+                            
+                             <div class="schedule-entry break-entry">
+                                <div class="schedule-time">11:25 - 11:45</div>
+                                <div class="schedule-details"><h4><i class="fas fa-flag-checkered fa-icon"></i>Closing Remarks</h4></div>
+                            </div>
+                             <div class="schedule-entry break-entry">
+                                <div class="schedule-time">11:45 onwards</div>
+                                <div class="schedule-details"><h4><i class="fas fa-plane-departure fa-icon"></i>Lunch & Departure</h4></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <p class="lead reveal-element" style="margin-top: 40px;"><em>A detailed schedule with talk titles will be announced soon.</em></p>
             </div>
         </section>
+        <!-- =========================
+        // END OF PROGRAM SECTION
+        =========================== -->
 
         <section id="organizers" class="box">
             <div class="container">
@@ -857,7 +1209,7 @@
         $(document).ready(function() {
             console.log("Script running in index.html");
 
-            // EXPANDED Speaker Data - Original 8 speakers + 6 new University of Luxembourg speakers distributed randomly
+            // EXPANDED Speaker Data
             const speakers = [
                 {
                     name: "Prof. Alfred Leitenstorfer",
@@ -959,7 +1311,7 @@
                 }
             ];
 
-            // Organizer Data - SAME AS BEFORE
+            // Organizer Data
             const organizers = [
                 {
                     name: "Prof. Alexandre Tkatchenko",
@@ -997,7 +1349,6 @@
                     </div>`;
                 speakerList.append(speakerCard);
                 
-                // After every 3rd speaker, add a clearing div to fix alignment
                 if ((index + 1) % 3 === 0) {
                     speakerList.append('<div class="clearfix visible-md-block visible-lg-block"></div>');
                 }
@@ -1025,10 +1376,9 @@
                 organizerList.append(organizerCard);
             });
 
-            // Preloader - Fix for the loading issue
+            // Preloader
             setTimeout(function() {
                 $('body').addClass('loaded');
-                console.log("Preloader removed");
             }, 1000);
 
             // Header Slider
@@ -1064,20 +1414,18 @@
                 e.stopPropagation();
             });
 
-            // Smooth Scrolling (with mobile-friendly offset)
+            // Smooth Scrolling
             $('a[href*="#"]:not([href="#"])').on('click', function() {
                 if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
                     var target = $(this.hash);
                     target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
                     if (target.length) {
-                        // Different offset for mobile vs desktop
                         var offset = $(window).width() < 768 ? 80 : 70;
                         
                         $('html, body').animate({
                             scrollTop: target.offset().top - offset
                         }, 1000);
                         
-                        // Close mobile menu if open
                         $('.navbar-collapse').removeClass('show');
                         
                         return false;
@@ -1102,14 +1450,12 @@
                 revealOnScroll();
             });
             
-            // Initial check
             revealOnScroll();
             
-            // Active menu highlighting (mobile-friendly)
+            // Active menu highlighting
             $(window).scroll(function() {
                 var scrollDistance = $(window).scrollTop() + ($(window).width() < 768 ? 100 : 80);
                 
-                // Highlight based on section position
                 $('section').each(function(i) {
                     if ($(this).position().top <= scrollDistance) {
                         $('.navbar-nav a.active').removeClass('active');
