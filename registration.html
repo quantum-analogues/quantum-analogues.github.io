@@ -4,208 +4,384 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration - Quantum Analogues Workshop</title>
-    <!-- Add links to any CSS or JS files from your site here, e.g., <link rel="stylesheet" href="styles.css"> -->
+    <meta name="description" content="Register for the Quantum Analogues Workshop at the University of Luxembourg.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&family=Dosis:wght@700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* --- Base & Typography --- */
+        :root {
+            --font-sans: 'Roboto', 'Open Sans', system-ui, -apple-system, sans-serif;
+            --font-display: 'Montserrat', 'Dosis', sans-serif;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --bg-main: #f7f9fc;
+            --border-color: #e2e8f0;
+            --color-accent-1: #886cc0;
+            --color-accent-2: #65b1d8;
+            --color-accent-light: #edf2ff;
+            --color-glow: rgba(136, 108, 192, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--bg-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--color-accent-1);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent-2);
+        }
+
+        /* --- Navigation --- */
+        .header-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--text-primary) !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-secondary);
+            font-weight: 700;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            color: var(--color-accent-1);
+            background: var(--color-accent-light);
+        }
+
+        /* --- Registration Form --- */
+        .registration-container {
+            padding-top: 120px;
+            padding-bottom: 80px;
+        }
+
+        .registration-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .registration-header h1 {
+            font-size: 3em;
+            background: -webkit-linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .quantum-divider {
+            width: 100px;
+            height: 4px;
+            margin: 20px auto;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+        }
+
+        .registration-form-wrapper {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(108, 122, 137, 0.1);
+        }
+
+        .form-section {
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            background-color: var(--bg-main);
+        }
+
+        .form-section h4 {
+            border-bottom: 2px solid var(--color-accent-light);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+            width: 100%; /* Ensure inputs take full width of their container */
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--color-accent-1);
+            box-shadow: 0 0 0 3px rgba(136, 108, 192, 0.1);
+        }
+        
+        .form-check-label {
+            margin-left: 0.5rem;
+        }
+
+        .form-actions {
+            margin-top: 40px;
+        }
+
+        .required {
+            color: #e53e3e;
+        }
+
+        /* --- Buttons --- */
+        .btn-quantum {
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+            color: white;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-weight: 700;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(136, 108, 192, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn-quantum:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(136, 108, 192, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* --- Footer --- */
+        #footer {
+            background: var(--text-primary);
+            color: #a0aec0;
+            padding: 60px 0;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+            max-width: 150px;
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 991.98px) {
+            .registration-header h1 { font-size: 2.5em; }
+        }
+
+        @media (max-width: 767.98px) {
+            body { font-size: 15px; }
+            .registration-form-wrapper { padding: 30px 20px; }
+            .form-section { padding: 20px; }
+            .registration-header h1 { font-size: 2em; }
+        }
+    </style>
 </head>
 <body>
-    
-        
-            
-                
-                    Quantum Analogues
-                    
-                        
-                    
-                    <nav>
-                        	
-                                <a href="index.html">Home</a>
+    <header id="menu" class="header-menu">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Quantum Analogues</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#speakers">Speakers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#program">Program</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="registration.html">Registration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#organizers">Organizers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#venue">Venue</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="registration-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 mx-auto">
+                    <div class="registration-header">
+                        <h1>Workshop Registration</h1>
+                        <div class="quantum-divider"></div>
+                        <p class="lead">Registration is free but mandatory.</p>
+                    </div>
+
+                    <div class="registration-form-wrapper">
+                        <form action="https://script.google.com/macros/s/AKfycbxRuz1ezuMquur6S-S2pkW6J3zNWu4cVzVh3TThlaXyrBhJfYiDKXqM3fL-snKJFHM/exec" method="post" target="_self">
+                            <div class="form-section">
+                                <h4><i class="fas fa-user-circle"></i> Personal Information</h4>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="fullName" class="form-label">Full Name <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="affiliation" class="form-label">Affiliation <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="affiliation" name="affiliation" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="position" class="form-label">Position/Title <span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="position" name="position" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h4><i class="fas fa-flask"></i> Research & Motivation</h4>
+                                <div class="form-group">
+                                    <label for="research" class="form-label">Briefly describe your research and motivation to attend.</label>
+                                    <textarea class="form-control" id="research" name="research" rows="4"></textarea>
+                                </div>
+                            </div>
                             
-	
-                                <a href="about.html">About</a>
-                            
-	
-                                <a href="speakers.html">Speakers</a>
-                            
-	
-                                <a href="program.html">Program</a>
-                            
-	
-                                <a href="registration.html">Registration</a>
-                            
-	
-                                <a href="organizers.html">Organizers</a>
-                            
-	
-                                <a href="venue.html">Venue</a>
-                            
-	
-                                <a href="contact.html">Contact</a>
-                            
-                    </nav>
-                    
-
-                
-
-            
-        
-
-    
-
-    
-        
-            
-                
-                    
-                        Workshop Registration
-
-                        
-
-                        Registration is free but mandatory.
-
-                    
-
-
-                    
-                        
-                            
-                                 Personal Information
-
-<form action="https://script.google.com/macros/s/AKfycbxRuz1ezuMquur6S-S2pkW6J3zNWu4cVzVh3TThlaXyrBhJfYiDKXqM3fL-snKJFHM/exec" method="post" target="_self">
-                                
-                                    
-                                        Full Name *
-                                        <input type="text" name="fullName" required>
-                                    
-                                    
-
-                                    
-                                        Email Address *
-                                        <input type="email" name="email" required>
-                                    
-                                    
-
-                                
-
-                                
-                                    
-                                        Affiliation *
-                                        <input type="text" name="affiliation" required>
-                                    
-                                    
-
-                                    
-                                        Position/Title *
-                                        <input type="text" name="position" required>
-                                    
-                                    
-
-                                
-
-                            
-
-
-                            
-                                 Research & Motivation
-
-                                
-                                    Briefly describe your research and motivation to attend.
-                                    <textarea name="research"></textarea>
-                                
-
-                            
-
-                            
-                            
-                                 Attendance & Dietary Needs
-
-                                
-                                    Which days will you attend? *
-                                    
-                                        
-                                        
-                                            <input type="checkbox" name="days" value="Day 1 (September 15th)">
+                            <div class="form-section">
+                                <h4><i class="fas fa-utensils"></i> Attendance & Dietary Needs</h4>
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Which days will you attend? <span class="required">*</span></label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Day 1 (September 15th)" id="day1" name="days">
+                                        <label class="form-check-label" for="day1">
                                             Day 1 (September 15th)
-                                        
-                                    
-
-                                    
-                                        
-                                        
-                                            <input type="checkbox" name="days" value="Day 2 (September 16th)">
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Day 2 (September 16th)" id="day2" name="days">
+                                        <label class="form-check-label" for="day2">
                                             Day 2 (September 16th)
-                                        
-                                    
+                                        </label>
+                                    </div>
+                                </div>
 
-                                
-
-
-                                
-                                    Will you be joining us for lunch?
-                                    
-                                        
-                                        
-                                            <input type="checkbox" name="lunches" value="Lunch on September 15th">
+                                <div class="form-group mb-4">
+                                    <label class="form-label">Will you be joining us for lunch?</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Lunch on September 15th" id="lunchDay1" name="lunches">
+                                        <label class="form-check-label" for="lunchDay1">
                                             Lunch on September 15th
-                                        
-                                    
-
-                                    
-                                        
-                                        
-                                            <input type="checkbox" name="lunches" value="Lunch on September 16th">
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Lunch on September 16th" id="lunchDay2" name="lunches">
+                                        <label class="form-check-label" for="lunchDay2">
                                             Lunch on September 16th
-                                        
-                                    
+                                        </label>
+                                    </div>
+                                </div>
 
-                                
-
-
-                                
-                                    Dietary Preferences for Lunch
-                                    <input type="radio" name="dietary" value="No Preference" checked> No Preference
-<input type="radio" name="dietary" value="Vegetarian">Vegetarian
-<input type="radio" name="dietary" value="Vegan">Vegan
-
-
-                                
-
+                                <div class="form-group mb-3">
+                                    <label class="form-label">Dietary Preferences for Lunch</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="dietary" id="dietaryNone" value="No Preference" checked>
+                                        <label class="form-check-label" for="dietaryNone">No Preference</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="dietary" id="dietaryVeg" value="Vegetarian">
+                                        <label class="form-check-label" for="dietaryVeg">Vegetarian</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="dietary" id="dietaryVegan" value="Vegan">
+                                        <label class="form-check-label" for="dietaryVegan">Vegan</label>
+                                    </div>
+                                </div>
+                            </div>
                             
+                            <div class="form-actions text-center">
+                                <button type="submit" class="btn btn-quantum btn-lg">Submit Registration</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <footer id="footer">
+        <div class="container text-center">
+            <img src="images/unilul.png" alt="University of Luxembourg Logo" class="footer-logo">
+            <p>Funded by the Institute for Advanced Studies (IAS) of the University of Luxembourg.</p>
+            <p>&copy; 2025 University of Luxembourg. All rights reserved.</p>
+        </div>
+    </footer>
 
-                            
-                            
-                            
-                            
-                            
-                                <button type="submit">Submit Registration</button>
-                            </form>
-
-                        
-
-                    
-
-                
-
-            
-
-        
-
-    
-
-
-    
-        
-            
-            Funded by the Institute for Advanced Studies (IAS) of the University of Luxembourg.
-
-            © 2025 University of Luxembourg. All rights reserved.
-
-        
-
-    
-
-    
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-<!-- nsxy sdfm rplb hcjg  -->
