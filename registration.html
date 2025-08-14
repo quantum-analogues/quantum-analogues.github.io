@@ -14,7 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        /* --- Base & Typography --- */
+        /* All your existing styles */
         :root {
             --font-sans: 'Roboto', 'Open Sans', system-ui, -apple-system, sans-serif;
             --font-display: 'Montserrat', 'Dosis', sans-serif;
@@ -26,18 +26,9 @@
             --color-accent-2: #65b1d8;
             --color-accent-light: #edf2ff;
             --color-glow: rgba(136, 108, 192, 0.5);
+            --color-deadline: #c53030; /* A color for the deadline text */
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         body {
             font-family: var(--font-sans);
             font-size: 16px;
@@ -46,7 +37,6 @@
             background-color: var(--bg-main);
             overflow-x: hidden;
         }
-
         h1, h2, h3, h4, h5, h6 {
             font-family: var(--font-display);
             font-weight: 700;
@@ -54,22 +44,12 @@
             margin-bottom: 20px;
             color: var(--text-primary);
         }
-
-        p {
-            margin-bottom: 1.5rem;
-        }
-
         a {
             color: var(--color-accent-1);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
-        a:hover {
-            color: var(--color-accent-2);
-        }
-
-        /* --- Navigation --- */
+        a:hover { color: var(--color-accent-2); }
         .header-menu {
             position: fixed;
             top: 0;
@@ -82,14 +62,12 @@
             transition: all 0.3s ease;
             padding: 10px 0;
         }
-
         .navbar-brand {
             font-size: 1.5em;
             font-weight: 700;
             color: var(--text-primary) !important;
             text-decoration: none;
         }
-
         .navbar-nav .nav-link {
             color: var(--text-secondary);
             font-weight: 700;
@@ -97,24 +75,18 @@
             border-radius: 8px;
             transition: all 0.3s ease;
         }
-
-        .navbar-nav .nav-link:hover, 
-        .navbar-nav .nav-link.active {
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
             color: var(--color-accent-1);
             background: var(--color-accent-light);
         }
-
-        /* --- Registration Form --- */
         .registration-container {
             padding-top: 120px;
             padding-bottom: 80px;
         }
-
         .registration-header {
             text-align: center;
             margin-bottom: 40px;
         }
-
         .registration-header h1 {
             font-size: 3em;
             background: -webkit-linear-gradient(45deg, var(--color-accent-1), var(--color-accent-2));
@@ -122,7 +94,6 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
         }
-
         .quantum-divider {
             width: 100px;
             height: 4px;
@@ -130,14 +101,25 @@
             border-radius: 2px;
             background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
         }
-
+        /* Style for the new deadline notice */
+        .deadline-notice {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--color-deadline);
+            background-color: #fff0f0;
+            border: 2px solid var(--color-deadline);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: -15px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
         .registration-form-wrapper {
             background: white;
             border-radius: 20px;
             padding: 50px;
             box-shadow: 0 20px 60px rgba(108, 122, 137, 0.1);
         }
-
         .form-section {
             padding: 30px;
             border: 1px solid var(--border-color);
@@ -145,40 +127,26 @@
             margin-bottom: 30px;
             background-color: var(--bg-main);
         }
-
         .form-section h4 {
             border-bottom: 2px solid var(--color-accent-light);
             padding-bottom: 15px;
             margin-bottom: 25px;
         }
-
         .form-control, .form-select {
             border-radius: 8px;
             border: 1px solid var(--border-color);
             padding: 12px 15px;
             transition: all 0.3s ease;
             margin-bottom: 15px;
-            width: 100%; /* Ensure inputs take full width of their container */
+            width: 100%;
         }
-
         .form-control:focus, .form-select:focus {
             border-color: var(--color-accent-1);
             box-shadow: 0 0 0 3px rgba(136, 108, 192, 0.1);
         }
-        
-        .form-check-label {
-            margin-left: 0.5rem;
-        }
-
-        .form-actions {
-            margin-top: 40px;
-        }
-
-        .required {
-            color: #e53e3e;
-        }
-
-        /* --- Buttons --- */
+        .form-check-label { margin-left: 0.5rem; }
+        .form-actions { margin-top: 40px; }
+        .required { color: #e53e3e; }
         .btn-quantum {
             background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
             color: white;
@@ -193,31 +161,22 @@
             display: inline-block;
             border: none;
         }
-
         .btn-quantum:hover {
             transform: translateY(-3px);
             box-shadow: 0 14px 28px rgba(136, 108, 192, 0.4);
             color: white;
             text-decoration: none;
         }
-
-        /* --- Footer --- */
         #footer {
             background: var(--text-primary);
             color: #a0aec0;
             padding: 60px 0;
         }
-
         .footer-logo {
             margin-bottom: 20px;
             max-width: 150px;
         }
-
-        /* --- Responsive Styles --- */
-        @media (max-width: 991.98px) {
-            .registration-header h1 { font-size: 2.5em; }
-        }
-
+        @media (max-width: 991.98px) { .registration-header h1 { font-size: 2.5em; } }
         @media (max-width: 767.98px) {
             body { font-size: 15px; }
             .registration-form-wrapper { padding: 30px 20px; }
@@ -276,6 +235,10 @@
                         <h1>Workshop Registration</h1>
                         <div class="quantum-divider"></div>
                         <p class="lead">Registration is free but mandatory.</p>
+                        <div class="deadline-notice">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Registration Deadline: September 10, 2025
+                        </div>
                     </div>
 
                     <div class="registration-form-wrapper">
@@ -385,8 +348,3 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
-<!-- AKfycbxRuz1ezuMquur6S-S2pkW6J3zNWu4cVzVh3TThlaXyrBhJfYiDKXqM3fL-snKJFHM
-https://script.google.com/macros/s/AKfycbxRuz1ezuMquur6S-S2pkW6J3zNWu4cVzVh3TThlaXyrBhJfYiDKXqM3fL-snKJFHM/exec -->
