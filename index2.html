@@ -6,15 +6,26 @@
     <title>Quantum Analogues - Brainstorm Workshop - University of Luxembourg</title>
     <meta name="description" content="A workshop on the intersection of cosmology and condensed matter, from black holes to Bose-Einstein condensates.">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&family=Dosis:wght@700&display=swap" rel="stylesheet">
     
-    <!-- External CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/flexslider.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
         /* --- Base & Typography --- */
@@ -519,6 +530,15 @@
             line-height: 1.8;
             color: var(--text-primary);
         }
+        .modal-body .abstract-text p {
+             margin-bottom: 1rem; /* Tighter spacing for abstract paragraphs */
+        }
+        .modal-body .abstract-text ol {
+            padding-left: 20px;
+        }
+        .modal-body .abstract-text li {
+            margin-bottom: 0.5rem;
+        }
 
         /* --- Venue Cards --- */
         .venue-card {
@@ -887,9 +907,8 @@
 
         <div class="header-cta">
             <div class="quantum-header">
-                <p>September 14 – 16, 2025 // University of Luxembourg</p>
+                <p>September 15 – 16, 2025 // University of Luxembourg</p>
                 <h1 class="entry-title">Quantum Analogues</h1>
-                <!-- <h5>From Black Holes to Bose-Einstein Condensates</h5> -->
                 <a href="registration.html" class="btn btn-quantum" style="margin-top: 30px;">Register Now</a>
             </div>
         </div>
@@ -913,14 +932,10 @@
                     <div class="quantum-divider reveal-element"></div>
                 </div>
                 <div class="row" id="speakerList">
-                    <!-- Speakers are inserted by the inline script below -->
-                </div>
+                    </div>
             </div>
         </section>
 
-        <!-- =========================
-        // REVISED PROGRAM SECTION
-        =========================== -->
         <section id="program" class="box">
             <div class="container">
                 <div class="section-title">
@@ -928,282 +943,167 @@
                     <div class="quantum-divider reveal-element"></div>
                 </div>
 
-                <!-- Day Tabs -->
                 <ul class="nav nav-tabs justify-content-center schedule-tabs reveal-element" id="scheduleTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="day1-tab" data-bs-toggle="tab" data-bs-target="#day1" type="button" role="tab" aria-controls="day1" aria-selected="true">Day 1: Sep 14</button>
+                        <button class="nav-link active" id="day1-tab" data-bs-toggle="tab" data-bs-target="#day1" type="button" role="tab" aria-controls="day1" aria-selected="true">Day 1: Sep 15</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="day2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button" role="tab" aria-controls="day2" aria-selected="false">Day 2: Sep 15</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="day3-tab" data-bs-toggle="tab" data-bs-target="#day3" type="button" role="tab" aria-controls="day3" aria-selected="false">Day 3: Sep 16</button>
+                        <button class="nav-link" id="day2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button" role="tab" aria-controls="day2" aria-selected="false">Day 2: Sep 16</button>
                     </li>
                 </ul>
 
-                <!-- Tab Content -->
                 <div class="tab-content reveal-element" id="scheduleTabContent">
-                    <!-- Day 1: Full Day -->
                     <div class="tab-pane fade show active" id="day1" role="tabpanel" aria-labelledby="day1-tab">
                         <div class="schedule-day-content">
-                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">09:00 - 09:30</div>
-                                <div class="schedule-details"><h4><i class="fas fa-coffee fa-icon"></i>Registration & Welcome Coffee</h4></div>
-                            </div>
                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">09:30 - 09:45</div>
-                                <div class="schedule-details"><h4><i class="fas fa-microphone fa-icon"></i>Opening Remarks</h4></div>
-                            </div>
-
-                            <div class="schedule-entry">
-                                <div class="schedule-time"></div>
+                                <div class="schedule-time">08:45 - 09:00</div>
                                 <div class="schedule-details">
-                                    <h4 class="session-title">Session 1: Probing the Vacuum & Fields</h4>
-                                    <p class="session-chair">Session Chair: TBD</p>
+                                    <h4><i class="fas fa-microphone fa-icon"></i>Opening Remarks</h4>
+                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
                                 </div>
                             </div>
                             <div class="schedule-entry">
-                                <div class="schedule-time">09:45 - 10:25</div>
-                                <div class="schedule-details">
-                                    <h4>Measuring the quantum vacuum</h4>
-                                    <p class="speaker-name">Prof. Alfred Leitenstorfer</p>
-                                </div>
-                            </div>
-                            <div class="schedule-entry">
-                                <div class="schedule-time">10:25 - 11:05</div>
-                                <div class="schedule-details">
-                                    <h4>Measuring vacuum correlations</h4>
-                                    <p class="speaker-name">Ms. Alexa Marina Herter</p>
-                                </div>
-                            </div>
-                            <div class="schedule-entry discussion-entry">
-                                <div class="schedule-time">11:05 - 11:25</div>
-                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
-                            </div>
-
-                            <div class="schedule-entry break-entry">
-                                <div class="schedule-time">11:25 - 12:10</div>
-                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee & Networking Break</h4></div>
-                            </div>
-
-                            <div class="schedule-entry">
-                                <div class="schedule-time"></div>
-                                <div class="schedule-details">
-                                    <h4 class="session-title">Session 2: Cosmological Analogues</h4>
-                                    <p class="session-chair">Session Chair: TBD</p>
-                                </div>
-                            </div>
-                            <div class="schedule-entry">
-                                <div class="schedule-time">12:10 - 12:50</div>
-                                <div class="schedule-details">
-                                    <h4>Cosmology in the laboratory</h4>
-                                    <p class="speaker-name">Prof. Markus Oberthaler</p>
-                                </div>
-                            </div>
-                            <div class="schedule-entry">
-                                <div class="schedule-time">12:50 - 13:30</div>
-                                <div class="schedule-details">
-                                    <h4>Cosmological tensions</h4>
-                                    <p class="speaker-name">Dr. William Giarè</p>
-                                </div>
-                            </div>
-                             <div class="schedule-entry discussion-entry">
-                                <div class="schedule-time">13:30 - 13:50</div>
-                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
-                            </div>
-
-                            <div class="schedule-entry break-entry">
-                                <div class="schedule-time">13:50 - 15:00</div>
-                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
-                            </div>
-                            
-                            <div class="schedule-entry">
-                                <div class="schedule-time"></div>
-                                <div class="schedule-details">
-                                    <h4 class="session-title">Session 3: Wave Control & Hydrodynamics</h4>
-                                    <p class="session-chair">Session Chair: TBD</p>
-                                </div>
-                            </div>
-                            <div class="schedule-entry">
-                                <div class="schedule-time">15:00 - 15:40</div>
-                                <div class="schedule-details">
-                                    <h4>Wave Control</h4>
-                                    <p class="speaker-name">Prof. Matthias Fink</p>
-                                </div>
-                            </div>
-                            <div class="schedule-entry">
-                                <div class="schedule-time">15:40 - 16:20</div>
+                                <div class="schedule-time">09:00 - 10:00</div>
                                 <div class="schedule-details">
                                     <h4>Hydrodynamic Analogues</h4>
                                     <p class="speaker-name">Prof. Germain Rousseaux</p>
                                 </div>
                             </div>
-                             <div class="schedule-entry discussion-entry">
-                                <div class="schedule-time">16:20 - 16:40</div>
-                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">10:00 - 11:00</div>
+                                <div class="schedule-details">
+                                    <h4>Quantum field simulator – what ultracold gases can offer</h4>
+                                    <p class="speaker-name">Prof. Markus Oberthaler</p>
+                                </div>
                             </div>
                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">16:40 - 17:00</div>
-                                <div class="schedule-details"><h4><i class="fas fa-sign-out-alt fa-icon"></i>End of Day 1</h4></div>
+                                <div class="schedule-time">11:00 - 11:30</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee Break</h4></div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Day 2: Full Day -->
-                    <div class="tab-pane fade" id="day2" role="tabpanel" aria-labelledby="day2-tab">
-                        <div class="schedule-day-content">
-                            <div class="schedule-entry">
-                                <div class="schedule-time"></div>
+                             <div class="schedule-entry">
+                                <div class="schedule-time">11:30 - 12:00</div>
                                 <div class="schedule-details">
-                                    <h4 class="session-title">Session 4: Complex Wave Phenomena</h4>
-                                    <p class="session-chair">Session Chair: TBD</p>
+                                    <h4>Free-surface correlations on water flows with an analogue horizon</h4>
+                                    <p class="speaker-name">Prof. Scott Robertson</p>
                                 </div>
                             </div>
                             <div class="schedule-entry">
-                                <div class="schedule-time">09:00 - 09:40</div>
+                                <div class="schedule-time">12:00 - 13:00</div>
                                 <div class="schedule-details">
-                                    <h4>Wave Phenomena</h4>
-                                    <p class="speaker-name">Prof. Stefan Rotter</p>
+                                    <h4>Wave Control</h4>
+                                    <p class="speaker-name">Prof. Matthias Fink</p>
                                 </div>
                             </div>
-                            <div class="schedule-entry">
-                                <div class="schedule-time">09:40 - 10:20</div>
-                                <div class="schedule-details">
-                                    <h4>TBD</h4>
-                                    <p class="speaker-name">Prof. Jörn Dunkel</p>
-                                </div>
-                            </div>
-                            <div class="schedule-entry discussion-entry">
-                                <div class="schedule-time">10:20 - 10:40</div>
-                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
-                            </div>
-                            
                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">10:40 - 11:25</div>
-                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee & Networking Break</h4></div>
+                                <div class="schedule-time">13:00 - 14:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
                             </div>
-
                             <div class="schedule-entry">
-                                <div class="schedule-time"></div>
+                                <div class="schedule-time">14:00 - 14:30</div>
                                 <div class="schedule-details">
-                                    <h4 class="session-title">Session 5: Theoretical & Quantum Frontiers</h4>
-                                    <p class="session-chair">Session Chair: TBD</p>
+                                    <h4>Introduction to the quantum vacuum</h4>
+                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
                                 </div>
                             </div>
                             <div class="schedule-entry">
-                                <div class="schedule-time">11:25 - 12:05</div>
+                                <div class="schedule-time">14:30 - 15:30</div>
+                                <div class="schedule-details">
+                                    <h4>Measuring vacuum fluctuations</h4>
+                                    <p class="speaker-name">Prof. Alfred Leitenstorfer</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">15:30 - 16:30</div>
+                                <div class="schedule-details">
+                                    <h4>Measuring vacuum correlations</h4>
+                                    <p class="speaker-name">Ms. Alexa Marina Herter</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">16:30 - 17:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee Break</h4></div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">17:00 - 17:30</div>
                                 <div class="schedule-details">
                                     <h4>The right and wrong with quantum field theory</h4>
                                     <p class="speaker-name">Prof. Alexandre Tkatchenko</p>
                                 </div>
                             </div>
                             <div class="schedule-entry">
-                                <div class="schedule-time">12:05 - 12:45</div>
+                                <div class="schedule-time">17:30 - 18:00</div>
                                 <div class="schedule-details">
-                                    <h4>TBD</h4>
-                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
+                                    <h4>What makes the quantum weirdness useful?</h4>
+                                    <p class="speaker-name">Dr. Matthieu Sarkis</p>
                                 </div>
                             </div>
-                            <div class="schedule-entry discussion-entry">
-                                <div class="schedule-time">12:45 - 13:05</div>
-                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">18:00 - 19:00</div>
+                                <div class="schedule-details">
+                                    <h4>Cosmological tensions</h4>
+                                    <p class="speaker-name">Dr. William Giarè</p>
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="schedule-entry break-entry">
-                                <div class="schedule-time">13:05 - 14:15</div>
-                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
-                            </div>
-                            
+                    <div class="tab-pane fade" id="day2" role="tabpanel" aria-labelledby="day2-tab">
+                        <div class="schedule-day-content">
                             <div class="schedule-entry">
-                                <div class="schedule-time"></div>
+                                <div class="schedule-time">09:00 - 10:00</div>
                                 <div class="schedule-details">
-                                    <h4 class="session-title">Session 6: Local Perspectives on Complex Systems</h4>
-                                    <p class="session-chair">Session Chair: TBD</p>
+                                    <h4>The Wigner–Smith Operator: A Key Tool for Applications in Wave Physics</h4>
+                                    <p class="speaker-name">Prof. Stefan Rotter</p>
                                 </div>
                             </div>
                             <div class="schedule-entry">
-                                <div class="schedule-time">14:15 - 14:55</div>
+                                <div class="schedule-time">10:00 - 11:00</div>
                                 <div class="schedule-details">
                                     <h4>TBD</h4>
-                                    <p class="speaker-name">Prof. Aurelia Chenu</p>
+                                    <p class="speaker-name">Prof. Jörn Dunkel</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">11:00 - 11:30</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee Break</h4></div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">11:30 - 12:00</div>
+                                <div class="schedule-details">
+                                    <h4>Quantum Forces: Emergent Effects of the Dynamic Vacuum</h4>
+                                    <p class="speaker-name">Dr. Mohammad Reza Karimpour</p>
                                 </div>
                             </div>
                             <div class="schedule-entry">
-                                <div class="schedule-time">14:55 - 15:35</div>
+                                <div class="schedule-time">12:00 - 13:00</div>
                                 <div class="schedule-details">
                                     <h4>TBD</h4>
                                     <p class="speaker-name">Prof. Alex Skupin</p>
                                 </div>
                             </div>
-                             <div class="schedule-entry discussion-entry">
-                                <div class="schedule-time">15:35 - 15:55</div>
-                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Session Discussion</h4></div>
-                            </div>
-
                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">15:55 - 17:00</div>
-                                <div class="schedule-details"><h4><i class="fas fa-sign-out-alt fa-icon"></i>End of Day 2 / Free Time</h4></div>
-                            </div>
-
-                            <div class="schedule-entry break-entry">
-                                <div class="schedule-time">19:00 onwards</div>
-                                <div class="schedule-details"><h4><i class="fas fa-glass-cheers fa-icon"></i>Conference Dinner</h4></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Day 3: Half Day -->
-                    <div class="tab-pane fade" id="day3" role="tabpanel" aria-labelledby="day3-tab">
-                        <div class="schedule-day-content">
-                             <div class="schedule-entry">
-                                <div class="schedule-time"></div>
-                                <div class="schedule-details">
-                                    <h4 class="session-title">Session 7: Emerging Topics</h4>
-                                    <p class="session-chair">Session Chair: TBD</p>
-                                </div>
-                            </div>
-                             <div class="schedule-entry">
-                                <div class="schedule-time">09:00 - 09:40</div>
-                                <div class="schedule-details">
-                                    <h4>What makes the quantum weirdness useful?</h4>
-                                    <p class="speaker-name">Dr. Matthieu Sarkis</p>
-                                    <button class="btn-abstract" data-speaker-id="sarkis">Read Abstract <i class="fas fa-search-plus"></i></button>
-                                </div>
+                                <div class="schedule-time">13:00 - 14:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
                             </div>
                             <div class="schedule-entry">
-                                <div class="schedule-time">09:40 - 10:20</div>
+                                <div class="schedule-time">14:00 - 15:00</div>
                                 <div class="schedule-details">
-                                    <h4>TBD</h4>
-                                    <p class="speaker-name">Dr. Mohammad Reza Karimpour</p>
+                                    <h4>Quantum Control in Noisy Platforms</h4>
+                                    <p class="speaker-name">Prof. Aurelia Chenu</p>
                                 </div>
                             </div>
-                             <div class="schedule-entry discussion-entry">
-                                <div class="schedule-time">10:20 - 10:40</div>
-                                <div class="schedule-details"><h4><i class="fas fa-comments fa-icon"></i>Final Discussion & Outlook</h4></div>
-                            </div>
-
-                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">10:40 - 11:25</div>
-                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee & Networking Break</h4></div>
-                            </div>
-                            
-                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">11:25 - 11:45</div>
-                                <div class="schedule-details"><h4><i class="fas fa-flag-checkered fa-icon"></i>Closing Remarks</h4></div>
-                            </div>
-                             <div class="schedule-entry break-entry">
-                                <div class="schedule-time">11:45 onwards</div>
-                                <div class="schedule-details"><h4><i class="fas fa-plane-departure fa-icon"></i>Lunch & Departure</h4></div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">15:00 - 15:15</div>
+                                <div class="schedule-details">
+                                    <h4><i class="fas fa-flag-checkered fa-icon"></i>Closing Remarks</h4>
+                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- =========================
-        // END OF PROGRAM SECTION
-        =========================== -->
-
         <section id="organizers" class="box">
             <div class="container">
                 <div class="section-title">
@@ -1211,8 +1111,7 @@
                     <div class="quantum-divider reveal-element"></div>
                 </div>
                 <div class="row" id="organizerList">
-                    <!-- Organizers are inserted by the inline script below -->
-                </div>
+                    </div>
             </div>
         </section>
 
@@ -1226,7 +1125,13 @@
                     <div class="col-md-6">
                         <div class="venue-card">
                             <h4><i class="fas fa-university"></i> Workshop Location</h4>
-                            <p><strong>Campus Limpertsberg, Bâtiment des Sciences (BS 0.03)</strong><br>162a, Avenue de la Faïencerie, L-1511 Luxembourg</p>
+                            <p>
+                                <strong>Bâtiment des Sciences, Campus Limpertsberg</strong><br>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Bâtiment+des+Sciences,+1510+Limpertsberg+Luxembourg" target="_blank">
+                                    1510 Limpertsberg Luxembourg
+                                    <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+                                </a>
+                            </p>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -1246,6 +1151,7 @@
                     <div class="quantum-divider reveal-element"></div>
                 </div>
                 <p class="lead reveal-element">For any questions, please contact the workshop coordinators:</p>
+                <h3 class="reveal-element">Yolande Edjogo</a></h3>
                 <h3 class="reveal-element"><a href="mailto:upala.mukhopadhyay@uni.lu">Dr. Upala Mukhopadhyay</a></h3>
                 <h3 class="reveal-element"><a href="mailto:dhruv.sharma@uni.lu">Dhruv Sharma</a></h3>
             </div>
@@ -1256,24 +1162,22 @@
         <div class="container text-center">
             <img src="images/unilul.png" alt="University of Luxembourg Logo" class="footer-logo">
             <p>Funded by the Institute for Advanced Studies (IAS) of the University of Luxembourg.</p>
-            <p>&copy; 2025 University of Luxembourg. All rights reserved.</p>
+            <p>© 2025 University of Luxembourg. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Abstract Modal -->
     <div class="modal-backdrop" id="abstractModalBackdrop"></div>
     <div class="modal-content-wrapper" id="abstractModal">
         <div class="modal-header">
             <h3 id="modalSpeakerName" class="modal-title">Speaker Name</h3>
-            <button type="button" class="modal-close" id="modalCloseBtn">&times;</button>
+            <button type="button" class="modal-close" id="modalCloseBtn">×</button>
         </div>
         <div class="modal-body">
             <h4 id="modalTalkTitle" class="abstract-title">Talk Title</h4>
-            <p id="modalAbstractText" class="abstract-text">Abstract goes here...</p>
+            <div id="modalAbstractText" class="abstract-text"></div>
         </div>
     </div>
 
-    <!-- External JS Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider-min.js"></script>
@@ -1281,33 +1185,70 @@
 
     <script>
         $(document).ready(function() {
-            console.log("Script running in index.html");
-
             // Speaker Data with IDs and Abstract
             const speakers = [
                 {
                     id: "leitenstorfer",
                     name: "Prof. Alfred Leitenstorfer",
                     affiliation: "University of Konstanz",
-                    topic: "Measuring the quantum vacuum",
+                    topic: "A Direct Approach to Electromagnetic Quantum Fluctuations",
                     image: "images/speakers/leitenstorfer.jpg",
-                    link: "https://www.leitenstorfer.uni-konstanz.de/personen/prof-dr-alfred-leitenstorfer/"
+                    link: "https://www.leitenstorfer.uni-konstanz.de/personen/prof-dr-alfred-leitenstorfer/",
+                    abstract: `<p>In his lectures at University of Chicago in 1929, Werner Heisenberg presented an uncertainty relation for the electromagnetic field [1]:</p>
+$$
+\\Delta E_{x} \\Delta H_{y} \\geq \\frac{hc}{(\\delta l)^4}
+$$
+<p>Here, $\\Delta E_{x}$ and $\\Delta H_{y}$ are the fluctuation amplitudes of the transverse electric and magnetic fields, respectively. $(\\delta l)^{4}$ denotes a four-dimensional space-time volume over which a measurement apparatus averages. A few years later, Niels Bohr and Leon Rosenfeld worked out general but fairly complex expressions for the electromagnetic uncertainty, considering also the nonlocal aspects which correlate different regions of space and time according to Maxwell's equations [2].</p>
+<p>Still, it is clear already from Heisenberg's first sketch that even the ground state of the electromagnetic field contains finite noise amplitudes - the so-called vacuum fluctuations - although it bears zero intensity. In a quantum-field picture, photons can spontaneously emerge and decay on sufficiently short scales of space and time. The energies and momenta of these virtual excitations are limited by the uncertainty principle. Since the photon represents its own antiparticle, spontaneous generation and annihilation of a photon may also be viewed as a virtual photon-antiphoton pair. Analogously, virtual pairs of particles and antiparticles with finite rest mass such as electron-positron pairs are populating the quantum vacuum as well. Yet, a finite rest energy sets an upper bound for the timescale where the properties of such massive virtual species might be studied directly. Owing to their massless character, this limit is absent for photons. As soon as experimental time resolution of the electric field amplitude becomes better than half an oscillation cycle, virtual photons should become readily observable. Indeed, it turns out that sufficiently sensitive approaches to detect optical electric fields provide a fairly direct perspective on such quantum phenomena. The presentation will feature the development of our understanding over the last 1.5 decades, present the underlying methodology and try to summarize the status of theoretical work.</p>
+<p>In conventional quantum optics, the quantum state of light is accessed in a time-averaged way via homodyne detection or photon correlation measurements. Instead, electro-optic sampling [3] provides subcycle access to the coherent electric field amplitude directly in the time domain. Working with few-femtosecond laser pulses enables a bandwidth beyond 100 THz, equivalent to the entire mid-infrared spectral range. Motivated by some early steps towards quantum experiments with subcycle resolution in solid-state nanostructures [4], generalizing this technique to quantum fields became attractive and it took some years to ponder about the basic concepts for a time-domain access to this context. The first set of experiments led to direct detection of electric-field vacuum fluctuations [5]. To harvest the full potential of this development, not only the bare ground state of electromagnetic radiation is to be studied but also more structured quantum fields. One prime example would be squeezed states where the fluctuation amplitude of one quadrature, e.g. the electric field amplitude, is reduced in one space-time volume that is sampled at a specific time delay. Consequently, the variance has to increase in another quadrature or spatio-temporal volume. In a hand-waving picture, such conditions are achieved by cross-phase modulation of the vacuum fluctuations where a local change of the refractive index of a nonlinear medium leads to a depletion of vacuum amplitude in one interval and a pileup in another one. In a first quest towards this end, we thought we had generated and accessed such noise patterns in time with both negative and positive deviations from the bare vacuum amplitude [6]. Carrying out the measurements with a more powerful pump source, however, showed that the first data were heavily contaminated by artefacts. In brief, our 6-fs probe pulses carried Poissonian photon statistics only regarding their integrated spectrum but there is some excess amplitude noise anti-correlating the high- and low-frequency regions [7]. Together with some residual coherent field amplitude, an inherent presence of the Hilbert transform of this field in the electro-optic signals [8] and some minor deviations of the optical bias in the ellipsometer from $\\lambda/4$, noise changes very similar to those expected for a squeezed vacuum field emerged.</p>
+<p>At present, we are working towards generation and time-domain detection of intense squeezed vacua without significant coherent amplitudes by pumping an orientationally patterned GaAs parametric downconverter with intense pulses at 75 THz from a degenerate optical parametric oscillator [9]. In addition, the excess noise in our ultrabroadband probe pulses was minimized by designing Er:fiber modelocked laser systems that exhibit linewidths of their femtosecond frequency combs of order 1 kHz over a broad spectral range [10]. A first theory of quantum electro-optic sampling and generation of nonclassical states of light that are synchronal to the femtosecond sampling pulses was based on a paraxial approach to nonlinear quantum optics [11]. Meanwhile, further aspects were explored theoretically such as subcycle squeezing [12], its analogies to radiation emitted by rapidly accelerating objects in cosmology [13], the roles of quantum susceptibilities [14] and back action [15] as well as a fully relativistic description based on quantum field theory [16]. In total, once it is fully established, time-domain quantum optics might provide a variety of opportunities for science ranging from e.g. quantum spectroscopy of collective excitations and correlated states in condensed matter all the way to a testing ground for relativistic quantum physics in curved spacetime.</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>W. Heisenberg, "The Physical Principles of the Quantum Theory", Dover Publishing (1949).</li>
+    <li>N. Bohr and L. Rosenfeld, "Zur Frage der Messbarkeit der elektromagnetischen Feldgrössen", Kgl. Danske Vid. Sels., Math.-fys. Medd. XII, 8 (1933).</li>
+    <li>I.-C. Benea-Chelmus, J. Faist, A. L., A. S. Moskalenko, I. Pupeza, D. V. Seletskiy, K. L. Vodopyanov, "Electro-optic sampling of classical and quantum light (minireview)," Optica 12, 546 (2025).</li>
+    <li>G. Günter, A. A. Anappara, J. Hees, A. Sell, G. Biasiol, L. Sorba, S. De Liberato, C. Ciuti, A. Tredicucci, A. L., and R. Huber, "Sub-cycle switch-on of ultrastrong light-matter interaction," Nature 458, 178 (2009).</li>
+    <li>C. Riek, D.V. Seletskiy, A. S. Moskalenko, J.F. Schmidt, P. Krauspe, S. Eckart, S. Eggert, G. Burkard, and A. L., "Direct sampling of electric-field vacuum fluctuations," Science 350, 420 (2015).</li>
+    <li>C. Riek, P. Sulzer, M. Seeger, A. S. Moskalenko, G. Burkard, D. V. Seletskiy, and A. L., "Subcycle quantum electrodynamics," Nature 541, 376 (2017).</li>
+    <li>P. Sulzer, C. Beckh, A. Liehl, J. Huster, K. R. Keller, M. Cimander, P. Henzler, C. Traum, C. Riek, D. V. Seletskiy, and A. L., "Passive elimination of correlated amplitude fluctuations in ultrabroadband supercontinua from highly nonlinear fibers by three-wave mixing," Opt. Lett. 45, 4714 (2020).</li>
+    <li>P. Sulzer, K. Oguchi, J. Huster, M. Kizmann, T. L. M. Guedes, A. Liehl, C. Beckh, A. S. Moskalenko, G. Burkard, D. V. Seletskiy, and A. L., "Determination of the electric field and its Hilbert transform in femtosecond electro-optic sampling," Phys. Rev. A 101, 033821 (2020).</li>
+    <li>H. Kempf, A. Muraviev, F. Breuning, P. G. Schunemann, R. Tenne, A. L., and K. Vodopyanov, "Direct sampling of femtosecond electric-field waveforms from an optical parametric oscillator," APL Photonics 9, 036111 (2024).</li>
+    <li>S. R. Hutter, A. Seer, T. König, R. Herda, D. Hertzsch, H. Kempf, R. Wilk, and A. L., "Femtosecond Frequency Combs with Few-kHz Passive Stability over an Ultrabroadband Spectral Range," Laser Photonics Rev. 17, 2200907 (2023).</li>
+    <li>A. S. Moskalenko, C. Riek, D. V. Seletskiy, G. Burkard, and A. L., "Paraxial Theory of Direct Electro-optic Sampling of the Quantum Vacuum", Phys. Rev. Lett. 115, 263601 (2015).</li>
+    <li>M. Kizmann, T. L. M. Guedes, D. V. Seletskiy, A. S. Moskalenko, A. L., and G. Burkard, "Subcycle squeezing of light from a time flow perspective," Nature Phys. 15, 960 (2019).</li>
+    <li>M. Kizmann, A. S. Moskalenko, A.L., G. Burkard, and S. Mukamel, "Quantum Susceptibilities in Time-Domain Sampling of Electric Field Fluctuations," Laser Photonics Rev. 16, 2100423 (2022).</li>
+    <li>T. L. M. Guedes, M. Kizmann, D. V. Seletskiy, A. L., G. Burkard, and A. S. Moskalenko, "Spectra of Ultrabroadband Squeezed Pulses and the Finite-Time Unruh-Davies Effect," Phys. Rev. Lett. 122, 053604 (2019).</li>
+    <li>T. L. M. Guedes, I. Vakulchyk, D. V. Seletskiy, A. L., A. S. Moskalenko, and G. Burkard, "Back action in quantum electro-optic sampling of electromagnetic vacuum fluctuations," Phys. Rev. Res. 5, 013151 (2023).</li>
+    <li>S. Onoe, T. L. M. Guedes, A. S. Moskalenko, A. L., G. Burkard, and T. C. Ralph, "Realizing a rapidly switched Unruh-DeWitt detector through electro-optic sampling of the electromagnetic vacuum," Phys. Rev. D 105, 056023 (2022).</li>
+</ol>`
                 },
                 {
                     id: "oberthaler",
                     name: "Prof. Markus Oberthaler",
                     affiliation: "Heidelberg University",
-                    topic: "Cosmology in the laboratory",
+                    topic: "Quantum field simulator – what ultracold gases can offer",
                     image: "images/speakers/oberthaler.jpg",
-                    link: "https://www.kip.uni-heidelberg.de/personen/552"
+                    link: "https://www.kip.uni-heidelberg.de/personen/552",
+                    abstract: "Ultracold gases provide an extremely versatile experimental platform for investigating fundamental issues in quantum field theory. In this talk, I will provide an overview of the primary tools used to prepare initial states, the dynamic modification of microscopic parameters, and various detection methods. I will then present recent results on quantum field dynamics in controlled spacetimes as explicit examples. A key observation is particle production in time-dependent metrics in the context of cosmology, with a power-law dependence of the scale factor, and the more general question of quantum dynamics in a temporally oscillating metric. Finally, I will share my thoughts on implementing particle detectors for quantum fields in ultracold gases."
                 },
                 {
                     id: "chenu",
                     name: "Prof. Aurelia Chenu",
                     affiliation: "University of Luxembourg",
-                    topic: "TBD",
+                    topic: "Quantum Control in Noisy Platforms",
                     image: "images/speakers/chenu.png",
-                    link: "https://www.uni.lu/fstm-en/people/aurelia-chenu/"
+                    link: "https://www.uni.lu/fstm-en/people/aurelia-chenu/",
+                    abstract: `<p>Quantum experiments are performed in noisy platforms. In NISQ devices, realistic setups can be described by open systems or noisy Hamiltonians. Starting from a generic noisy Hamiltonian, I will first present a scheme to control the thermalization of a harmonic oscillator in arbitrary time [1].</p>
+<p>Then, going beyond the noise-averaged density matrix, I will introduce the concept of stochastic operator variance (SOV) of an observable. The SOV [2] is an operator that characterizes the deviation of any operator from the noise-averaged operator in a stochastic evolution governed by the Hamiltonian. As such, it is relevant in the quantum simulation of open systems using NISQ devices, e.g., to engineer a given dissipative evolution. Surprisingly, we find that the evolution of the noise-averaged variance relates to an out-of-time-order correlator (OTOC), which connects fluctuations of the system with scrambling. This connection may allow computing the Lyapunov exponent and experimentally access OTOCs without the need to invert the sign of the Hamiltonian. I will illustrate the results in the stochastic LMG model, and show how noise changes the phase diagram of the system.</p>
+<p>In a last part, I will focus on the dynamics generated by a stochastic non-Hermitian Hamiltonian. We introduce a new type of non-linear master equation. Looking at the stochastic dissipative qubit, we find that noise can be used to control the dynamics, mainly to control the steady state and convergence time to it [3].</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>L. Dupays, I. L. Egusquiza, A. del Campo, and A. Chenu. Superadiabatic thermalization of a quantum oscillator by engineered dephasing, Phys. Rev. Res. 2:033178 (2020)</li>
+    <li>P. Martinez-Azcona, A.Kundu, A. del Campo, and A. Chenu, PRL 131:160202 (2023).</li>
+    <li>P. Martinez-Azcona, A.Kundu, A. Saxena, A. del Campo, and A. Chenu, PRL (2025).</li>
+</ol>`
                 },
                 {
                     id: "giare",
@@ -1350,19 +1291,37 @@
                     link: "https://germain-rousseaux.cnrs.fr/"
                 },
                 {
+                    id: "robertson",
+                    name: "Prof. Scott Robertson",
+                    affiliation: "University of Poitiers",
+                    topic: "Free-surface correlations on water flows with an analogue horizon",
+                    image: "images/speakers/robertson.jpg", 
+                    link: "#",
+                    abstract: `<p>As a realisation of field theory in curved spacetime, Analogue Gravity finds great utility in correlation functions. In particular, such correlations capture the pairwise nature of the analogue of Hawking radiation in an effective spacetime with a black-hole horizon [1-3]. More generally, they can provide valuable information about the behaviour and structure of the effective spacetime and the wave scattering induced on it. In this talk, I will describe experimentally observed correlations in the free-surface deformations of transcritical water flows, in both black-hole [4] and white-hole [5] configurations. Particular attention will be paid to those features that suggest the occurrence of the Hawking effect.</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>R. Balbinot et al., Phys. Rev. A 78, 021603(R) (2008)</li>
+    <li>I. Carusotto et al., New J. Phys. 10, 103001 (2008)</li>
+    <li>J. R. M. de Nova et al., Nature 569, 688 (2019)</li>
+    <li>L.-P. Euvé et al., Phys. Rev. Lett. 124, 141101 (2020)</li>
+    <li>J. Fourdrinoy et al., Phys. Rev. D 105, 085022 (2022)</li>
+</ol>`
+                },
+                {
                     id: "sarkis",
                     name: "Dr. Matthieu Sarkis",
                     affiliation: "University of Luxembourg",
                     topic: "What makes the quantum weirdness useful?",
                     image: "images/speakers/sarkis.jpg",
                     link: "https://www.uni.lu/fstm-en/people/matthieu-sarkis/",
-                    abstract: "Quantum technologies draw their power from a specific kind of nonclassicality often called 'magic'—patterns in a quantum state that can’t be explained by ordinary (classical) probabilities. Unlike entanglement alone, magic is a practical marker of when a quantum system becomes hard to simulate and when truly quantum operations appear. In this talk, after introducing a standard measure of magic in finite-dimensional quantum systems called the Stabilizer Renyi Entropy (SRE), I will provide a first-principle 'derivation' of this quantity. Our approach allows us then to naturally propose a measure of magic for hybrid boson-fermion systems. We also show how the notion of magic, rooted in quantum information theory, can be relevant to quantum chemistry and bond formation"
+                    abstract: "Quantum technologies draw their power from a specific kind of nonclassicality often called 'magic'—patterns in a quantum state that can’t be explained by ordinary (classical) probabilities. Unlike entanglement alone, magic is a practical marker of when a quantum system becomes hard to simulate and when truly quantum operations appear. In this talk, after introducing a standard measure of magic in finite-dimensional quantum systems called the Stabilizer Renyi Entropy (SRE), I will provide a first-principle 'derivation' of this quantity. Our approach allows us then to naturally propose a measure of magic for hybrid boson-fermion systems. We also show how the notion of magic, rooted in quantum information theory, can be relevant to quantum chemistry and bond formation."
                 },
                 {
                     id: "leonhardt",
                     name: "Prof. Ulf Leonhardt",
                     affiliation: "Weizmann Institute of Science",
-                    topic: "TBD",
+                    topic: "Introduction to the quantum vacuum",
                     image: "images/speakers/ulf.jpg",
                     link: "https://www.weizmann.ac.il/complex/prof-ulf-leonhardt"
                 },
@@ -1370,9 +1329,25 @@
                     id: "rotter",
                     name: "Prof. Stefan Rotter",
                     affiliation: "Vienna University of Technology",
-                    topic: "Wave Phenomena",
+                    topic: "The Wigner–Smith Operator: A Key Tool for Applications in Wave Physics",
                     image: "images/speakers/rotter.jpg",
-                    link: "https://rottergroup.itp.tuwien.ac.at/"
+                    link: "https://rottergroup.itp.tuwien.ac.at/",
+                    abstract: `<p>In my talk, I will provide an overview of recent advances in understanding and controlling wave propagation, as enabled by the concept of the Wigner–Smith operator. Originally proposed by Eugene Wigner and Felix Smith in the context of scattering time delay, this operator has meanwhile been generalised [1,2] to serve as a key tool in a variety of applications, including wave focusing [2,3], maximising optical forces and torques [2,4], optical trapping [5], efficiently cooling levitated particles [6], transmission through multi-mode fibers [7], estimating system parameters [8], and optical inverse-design [9]. Furthermore, I will demonstrate that the generalised Wigner–Smith operator is strongly connected to the forces of the quantum vacuum [10], and its expectation values can be unambiguously decomposed into geometric and dynamical parts [11]. This generalises Berry's seminal concept of the geometric phase to a broad class of scattering problems.</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>Ambichl et al., Phys. Rev. Lett. 119, 033903 (2017).</li>
+    <li>Horodynski et al., Nature Photonics 14, 149 (2020).</li>
+    <li>Goıcoechea et al., Phys. Rev. Lett. 134, 183802 (2025).</li>
+    <li>Orazbayev et al., Nature Physics 14, 149 (2024).</li>
+    <li>Butaite et al., Sci. Adv. 10, eadi7792 (2024).</li>
+    <li>Hüpfl et al., Phys. Rev. Lett. 130, 083203 (2023).</li>
+    <li>Matthès et al., Phys. Rev. X 11, 021060 (2021).</li>
+    <li>Bouchet et al., Nature Physics 17, 564 (2021).</li>
+    <li>Horodynski et al., Nature 607, 281 (2022).</li>
+    <li>Rachbauer et al., J. Opt. Soc. Am. B 41, 2122 (2024).</li>
+    <li>Bliokh et al., arXiv:2506.07144.</li>
+</ol>`
                 },
                 {
                     id: "dunkel",
@@ -1394,7 +1369,7 @@
                     id: "karimpour",
                     name: "Dr. Mohammad Reza Karimpour",
                     affiliation: "University of Luxembourg",
-                    topic: "TBD",
+                    topic: "Quantum Forces: Emergent Effects of the Dynamic Vacuum",
                     image: "images/speakers/reza.jpg",
                     link: "https://www.uni.lu/fstm-en/people/mohammad-reza-karimpour/"
                 }
@@ -1426,7 +1401,7 @@
                     <div class="col-md-4 col-sm-6 reveal-element">
                         <div class="speaker-card">
                             <a href="${speaker.link}" target="_blank" class="speaker-link">
-                                <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive">
+                                <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive" onerror="this.src='https://placehold.co/250x250/EFEFEF/AAAAAA&text=Photo'; this.onerror=null;">
                             </a>
                             <div class="speaker-info">
                                 <h4>${speaker.name}</h4>
@@ -1450,7 +1425,7 @@
                     <div class="col-md-6 col-sm-6 reveal-element">
                         <a href="${organizer.link}" target="_blank" class="speaker-link">
                             <div class="speaker-card">
-                                <img src="${organizer.image}" alt="${organizer.name}" class="img-responsive">
+                                <img src="${organizer.image}" alt="${organizer.name}" class="img-responsive" onerror="this.src='https://placehold.co/250x250/EFEFEF/AAAAAA&text=Photo'; this.onerror=null;">
                                 <div class="speaker-info">
                                     <h4>${organizer.name}</h4>
                                     <h5>${organizer.affiliation}</h5>
@@ -1491,7 +1466,13 @@
             function openModal(speaker) {
                 modalSpeakerName.text(speaker.name);
                 modalTalkTitle.text(speaker.topic);
-                modalAbstractText.text(speaker.abstract);
+                
+                modalAbstractText.html(speaker.abstract);
+
+                if (window.MathJax) {
+                    MathJax.typesetPromise([modalAbstractText[0]]).catch((err) => console.log(err.message));
+                }
+                
                 modalBackdrop.addClass('show');
                 modal.addClass('show');
             }
@@ -1501,7 +1482,6 @@
                 modal.removeClass('show');
             }
 
-            // Use event delegation for dynamically added buttons
             $(document).on('click', '.btn-abstract', function() {
                 const speakerId = $(this).data('speaker-id');
                 const speaker = speakers.find(s => s.id === speakerId);
@@ -1513,13 +1493,11 @@
             $('#modalCloseBtn').on('click', closeModal);
             modalBackdrop.on('click', closeModal);
 
-
             // Mobile Menu Toggle
             $('.navbar-toggler').on('click', function() {
                 $('#menu').toggleClass('open-menu');
             });
             
-            // Close mobile menu when clicking outside
             $(document).on('click', function(e) {
                 if (!$(e.target).closest('.navbar').length) {
                     $('.navbar-collapse').removeClass('show');
@@ -1527,7 +1505,6 @@
                 }
             });
             
-            // Prevent mobile menu close when clicking inside
             $('.navbar-collapse').on('click', function(e) {
                 e.stopPropagation();
             });
