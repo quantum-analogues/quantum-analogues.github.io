@@ -26,7 +26,7 @@
             --color-accent-2: #65b1d8;
             --color-accent-light: #edf2ff;
             --color-glow: rgba(136, 108, 192, 0.5);
-            --color-deadline: #c53030; /* A color for the deadline text */
+            --color-deadline: #4a5568; /* A color for the closed notice text */
         }
         html { scroll-behavior: smooth; }
         body {
@@ -106,8 +106,8 @@
             font-size: 1.2em;
             font-weight: 700;
             color: var(--color-deadline);
-            background-color: #fff0f0;
-            border: 2px solid var(--color-deadline);
+            background-color: #f7fafc;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             padding: 15px;
             margin-top: -15px;
@@ -166,6 +166,13 @@
             box-shadow: 0 14px 28px rgba(136, 108, 192, 0.4);
             color: white;
             text-decoration: none;
+        }
+        .btn-quantum:disabled {
+            background: #e2e8f0;
+            color: #a0aec0;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
         }
         #footer {
             background: var(--text-primary);
@@ -234,100 +241,101 @@
                     <div class="registration-header">
                         <h1>Workshop Registration</h1>
                         <div class="quantum-divider"></div>
-                        <p class="lead">Registration is free but mandatory.</p>
                         <div class="deadline-notice">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            Registration Deadline: September 10, 2025
+                            <i class="fas fa-info-circle"></i>
+                            The workshop is now over. Registration is closed.
                         </div>
                     </div>
 
                     <div class="registration-form-wrapper">
                         <form action="https://script.google.com/macros/s/AKfycbysrtMNSd6NAWxRBNHFJeOXhg30UqI1mM_uubFBGbPKeu6-HNuY7Rc7ZZrXsI-a-n8/exec" method="post">
-                            <div class="form-section">
-                                <h4><i class="fas fa-user-circle"></i> Personal Information</h4>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="fullName" class="form-label">Full Name <span class="required">*</span></label>
-                                        <input type="text" class="form-control" id="fullName" name="fullName" required>
+                            <fieldset disabled>
+                                <div class="form-section">
+                                    <h4><i class="fas fa-user-circle"></i> Personal Information</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="fullName" class="form-label">Full Name <span class="required">*</span></label>
+                                            <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="email" class="form-label">Email Address <span class="required">*</span></label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label for="affiliation" class="form-label">Affiliation <span class="required">*</span></label>
-                                        <input type="text" class="form-control" id="affiliation" name="affiliation" required>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label for="position" class="form-label">Position/Title <span class="required">*</span></label>
-                                        <input type="text" class="form-control" id="position" name="position" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-section">
-                                <h4><i class="fas fa-flask"></i> Research & Motivation</h4>
-                                <div class="form-group">
-                                    <label for="research" class="form-label">Briefly describe your research and motivation to attend.</label>
-                                    <textarea class="form-control" id="research" name="research" rows="4"></textarea>
-                                </div>
-                            </div>
-                            
-                            <div class="form-section">
-                                <h4><i class="fas fa-utensils"></i> Attendance & Dietary Needs</h4>
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Which days will you attend? <span class="required">*</span></label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Day 1 (September 15th)" id="day1" name="days">
-                                        <label class="form-check-label" for="day1">
-                                            Day 1 (September 15th)
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Day 2 (September 16th)" id="day2" name="days">
-                                        <label class="form-check-label" for="day2">
-                                            Day 2 (September 16th)
-                                        </label>
+                                    <div class="row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="affiliation" class="form-label">Affiliation <span class="required">*</span></label>
+                                            <input type="text" class="form-control" id="affiliation" name="affiliation" required>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="position" class="form-label">Position/Title <span class="required">*</span></label>
+                                            <input type="text" class="form-control" id="position" name="position" required>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-4">
-                                    <label class="form-label">Will you be joining us for lunch?</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Lunch on September 15th" id="lunchDay1" name="lunches">
-                                        <label class="form-check-label" for="lunchDay1">
-                                            Lunch on September 15th
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="Lunch on September 16th" id="lunchDay2" name="lunches">
-                                        <label class="form-check-label" for="lunchDay2">
-                                            Lunch on September 16th
-                                        </label>
+                                <div class="form-section">
+                                    <h4><i class="fas fa-flask"></i> Research & Motivation</h4>
+                                    <div class="form-group">
+                                        <label for="research" class="form-label">Briefly describe your research and motivation to attend.</label>
+                                        <textarea class="form-control" id="research" name="research" rows="4"></textarea>
                                     </div>
                                 </div>
+                                
+                                <div class="form-section">
+                                    <h4><i class="fas fa-utensils"></i> Attendance & Dietary Needs</h4>
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Which days will you attend? <span class="required">*</span></label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Day 1 (September 15th)" id="day1" name="days">
+                                            <label class="form-check-label" for="day1">
+                                                Day 1 (September 15th)
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Day 2 (September 16th)" id="day2" name="days">
+                                            <label class="form-check-label" for="day2">
+                                                Day 2 (September 16th)
+                                            </label>
+                                        </div>
+                                    </div>
 
-                                <div class="form-group mb-3">
-                                    <label class="form-label">Dietary Preferences for Lunch</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="dietary" id="dietaryNone" value="No Preference" checked>
-                                        <label class="form-check-label" for="dietaryNone">No Preference</label>
+                                    <div class="form-group mb-4">
+                                        <label class="form-label">Will you be joining us for lunch?</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Lunch on September 15th" id="lunchDay1" name="lunches">
+                                            <label class="form-check-label" for="lunchDay1">
+                                                Lunch on September 15th
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Lunch on September 16th" id="lunchDay2" name="lunches">
+                                            <label class="form-check-label" for="lunchDay2">
+                                                Lunch on September 16th
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="dietary" id="dietaryVeg" value="Vegetarian">
-                                        <label class="form-check-label" for="dietaryVeg">Vegetarian</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="dietary" id="dietaryVegan" value="Vegan">
-                                        <label class="form-check-label" for="dietaryVegan">Vegan</label>
+
+                                    <div class="form-group mb-3">
+                                        <label class="form-label">Dietary Preferences for Lunch</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="dietary" id="dietaryNone" value="No Preference" checked>
+                                            <label class="form-check-label" for="dietaryNone">No Preference</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="dietary" id="dietaryVeg" value="Vegetarian">
+                                            <label class="form-check-label" for="dietaryVeg">Vegetarian</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="dietary" id="dietaryVegan" value="Vegan">
+                                            <label class="form-check-label" for="dietaryVegan">Vegan</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </fieldset>
                             
                             <div class="form-actions text-center">
-                                <button type="submit" class="btn btn-quantum btn-lg">Submit Registration</button>
+                                <button type="submit" class="btn btn-quantum btn-lg" disabled>Registration Closed</button>
                             </div>
                         </form>
                     </div>
