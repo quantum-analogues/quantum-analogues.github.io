@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Quantum Analogues - Brainstorm Workshop - University of Luxembourg</title>
+    <meta name="description" content="A workshop on the intersection of cosmology and condensed matter, from black holes to Bose-Einstein condensates.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&family=Dosis:wght@700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/flexslider.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* --- Base & Typography --- */
+        :root {
+            --font-sans: 'Roboto', 'Open Sans', system-ui, -apple-system, sans-serif;
+            --font-display: 'Montserrat', 'Dosis', sans-serif;
+            --text-primary: #2d3748;
+            --text-secondary: #718096;
+            --bg-main: #f7f9fc;
+            --border-color: #e2e8f0;
+            --color-accent-1: #886cc0;
+            --color-accent-2: #65b1d8;
+            --color-accent-light: #edf2ff;
+            --color-glow: rgba(136, 108, 192, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--bg-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        h1 { font-size: 3em; }
+        h2 { font-size: 2.5em; }
+        h3 { font-size: 1.7em; }
+        h4 { font-size: 1.4em; }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--color-accent-1);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent-2);
+        }
+
+        /* --- Layout --- */
+        .box {
+            padding: 100px 0;
+        }
+
+        section {
+            position: relative;
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* --- Preloader --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #preloader:before {
+            content: "";
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--color-accent-1);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        body.loaded #preloader {
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- Animated Background --- */
+        #header {
+            color: white;
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .quantum-particles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+        }
+
+        /* --- Header Slider --- */
+        .header-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .header-slider .slides {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-slider .slides li {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-slider .slides li img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+
+        /* --- Navigation --- */
+        .header-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--text-primary) !important;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-secondary);
+            font-weight: 700;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            color: var(--color-accent-1);
+            background: var(--color-accent-light);
+        }
+
+        .navbar-toggler {
+            border: none;
+            padding: 4px 8px;
+            font-size: 1.25rem;
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler i {
+            color: var(--text-primary);
+        }
+
+        /* --- Header Content --- */
+        .header-cta {
+            z-index: 10;
+            position: relative;
+        }
+
+        .quantum-header {
+            background: rgba(0, 0, 0, 0.35);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .quantum-header p {
+            font-size: 1.2em;
+            font-weight: 500;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .entry-title {
+            font-size: 4em;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .quantum-header h5 {
+            font-size: 1.5em;
+            font-weight: 400;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        /* --- Section Titles --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .quantum-divider {
+            width: 100px;
+            height: 4px;
+            margin: 20px auto;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+        }
+
+        /* --- Speaker Cards --- */
+        .speaker-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .speaker-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            height: 100%;
+            margin-bottom: 30px;
+            cursor: default;
+            position: relative;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(108, 122, 137, 0.1);
+            border-color: var(--color-accent-1);
+        }
+
+        .speaker-card img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .speaker-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .speaker-info {
+            padding: 20px;
+        }
+
+        .speaker-info h4 {
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .speaker-info p {
+            color: var(--color-accent-1);
+            font-style: italic;
+            font-weight: 600;
+            margin-bottom: 15px;
+            min-height: 44px; /* Reserve space for topic */
+        }
+
+        .btn-abstract {
+            background: var(--color-accent-light);
+            color: var(--color-accent-1);
+            border: 1px solid var(--color-accent-light);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-abstract:hover {
+            background: var(--color-accent-1);
+            color: white;
+            border-color: var(--color-accent-1);
+        }
+        .btn-abstract i {
+            margin-left: 5px;
+        }
+        
+        /* --- Schedule Styles --- */
+        .schedule-tabs {
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .schedule-tabs .nav-link {
+            border: none;
+            border-bottom: 4px solid transparent;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 1.2em;
+            padding: 15px 25px;
+            transition: all 0.3s ease;
+            margin-bottom: -2px;
+        }
+        .schedule-tabs .nav-link.active {
+            color: var(--color-accent-1);
+            border-bottom-color: var(--color-accent-1);
+            background: transparent;
+        }
+        .schedule-day-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+        .schedule-entry {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .schedule-entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .schedule-time {
+            flex: 0 0 120px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.1em;
+            padding-right: 20px;
+        }
+        .schedule-details {
+            flex: 1;
+        }
+        .schedule-details h4 {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+        .schedule-details .speaker-name {
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .schedule-details .session-title {
+            font-weight: 700;
+            color: var(--color-accent-2);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        .schedule-details .session-chair {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        .schedule-entry.break-entry .schedule-details h4,
+        .schedule-entry.discussion-entry .schedule-details h4 {
+            color: var(--color-accent-1);
+            font-weight: 700;
+        }
+        .schedule-entry .fa-icon {
+            margin-right: 8px;
+            color: var(--color-accent-2);
+        }
+
+        /* --- Presentation List --- */
+        .presentation-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .presentation-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .presentation-item:hover {
+            border-color: var(--color-accent-1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .presentation-info h4 {
+            font-size: 1.1em;
+            margin-bottom: 2px;
+        }
+        .presentation-info p {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+        .btn-download {
+            background: var(--color-accent-1);
+            color: white;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .btn-download:hover {
+            background: var(--color-accent-2);
+            color: white;
+        }
+        .btn-download i {
+            margin-left: 8px;
+        }
+
+        /* --- Abstract Modal --- */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1040;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-content-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            z-index: 1050;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: none;
+            opacity: 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal-backdrop.show,
+        .modal-content-wrapper.show {
+            display: block;
+            opacity: 1;
+        }
+        .modal-content-wrapper.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .modal-title {
+            font-size: 1.5em;
+            margin-bottom: 0;
+            color: var(--text-primary);
+        }
+        .modal-close {
+            font-size: 2rem;
+            font-weight: 300;
+            line-height: 1;
+            color: #000;
+            text-shadow: none;
+            opacity: .5;
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+            padding: 0;
+        }
+        .modal-close:hover {
+            opacity: .8;
+        }
+        .modal-body .abstract-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-accent-1);
+            font-size: 1.2em;
+        }
+        .modal-body .abstract-text {
+            text-align: justify;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+        .modal-body .abstract-text p {
+             margin-bottom: 1rem; /* Tighter spacing for abstract paragraphs */
+        }
+        .modal-body .abstract-text ol {
+            padding-left: 20px;
+        }
+        .modal-body .abstract-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Venue Cards --- */
+        .venue-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .venue-card:hover {
+            border-color: var(--color-accent-1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .venue-card i {
+            color: var(--color-accent-1);
+            margin-right: 10px;
+        }
+
+        /* --- Organizer Cards --- */
+        .organizer-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .organizer-card:hover {
+            border-color: var(--color-accent-1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        /* --- Buttons --- */
+        .btn-quantum {
+            background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+            color: white;
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-weight: 700;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(136, 108, 192, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-quantum:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(136, 108, 192, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* --- Footer --- */
+        #footer {
+            background: var(--text-primary);
+            color: #a0aec0;
+            padding: 60px 0;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        /* --- Reveal Animation --- */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal-element.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 991.98px) {
+            .entry-title { font-size: 2.5em; }
+            .quantum-header h5 { font-size: 1.2em; }
+            .quantum-header { padding: 30px 20px; }
+            
+            .speaker-card img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            body { font-size: 15px; }
+            .box, section { padding: 60px 0; }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.5em; }
+            h4 { font-size: 1.3em; }
+
+            #header { min-height: 100vh; }
+            .entry-title { 
+                font-size: 2.5em; 
+                line-height: 1.2; 
+                margin-bottom: 15px;
+            }
+            .quantum-header {
+                padding: 25px 15px;
+                margin: 0 15px;
+                max-width: calc(100% - 30px);
+            }
+            .quantum-header p {
+                font-size: 1em;
+                margin-bottom: 15px;
+            }
+            .quantum-header h5 { 
+                font-size: 1.1em; 
+                margin-bottom: 20px;
+            }
+            
+            /* Mobile Navigation */
+            .navbar-brand {
+                font-size: 1.3em;
+            }
+            
+            .navbar-nav .nav-link {
+                padding: 12px 20px;
+                font-size: 16px;
+                border-radius: 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link.active {
+                background: var(--color-accent-1);
+                color: white;
+            }
+            
+            /* Mobile Cards */
+            .speaker-card, .organizer-card, .venue-card { 
+                margin-bottom: 20px; 
+            }
+            
+            .speaker-card {
+                border-radius: 12px;
+            }
+            
+            .speaker-card img {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 15px;
+            }
+            
+            .speaker-info {
+                padding: 15px;
+            }
+            
+            .speaker-info h4 {
+                font-size: 1.2em;
+                margin-bottom: 8px;
+            }
+            
+            .speaker-info h5 {
+                font-size: 0.9em;
+                margin-bottom: 8px;
+            }
+            
+            .speaker-info p {
+                font-size: 0.9em;
+                margin-bottom: 12px;
+            }
+            
+            /* Mobile Venue Cards */
+            .venue-card {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            
+            .venue-card h3 {
+                font-size: 1.3em;
+            }
+            
+            .venue-card h4 {
+                font-size: 1.2em;
+            }
+            
+            /* Mobile Buttons */
+            .btn-quantum {
+                padding: 12px 30px;
+                font-size: 14px;
+                border-radius: 25px;
+                display: block;
+                text-align: center;
+                max-width: 200px;
+                margin: 20px auto 0;
+            }
+            
+            /* Mobile Section Titles */
+            .section-title {
+                margin-bottom: 50px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+
+            /* Mobile Schedule */
+            .schedule-entry {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .schedule-time {
+                margin-bottom: 10px;
+                font-size: 1em;
+                flex: 0 0 auto;
+            }
+            .schedule-day-content {
+                padding: 20px;
+            }
+            .schedule-tabs .nav-link {
+                font-size: 1em;
+                padding: 12px 15px;
+            }
+
+            .presentation-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+            .presentation-info {
+                margin-bottom: 15px;
+            }
+            
+            /* Mobile Contact Section */
+            #contact h3 {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+            
+            #contact p {
+                font-size: 1em;
+            }
+            
+            /* Mobile Footer */
+            #footer {
+                padding: 40px 0;
+            }
+            
+            .footer-logo {
+                max-width: 150px;
+                height: auto;
+            }
+            
+            /* Mobile Grid Fixes */
+            .col-md-4,
+            .col-md-6 {
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .entry-title { 
+                font-size: 2.2em; 
+            }
+            
+            .quantum-header {
+                padding: 20px 12px;
+                margin: 0 10px;
+                max-width: calc(100% - 20px);
+            }
+            
+            .quantum-header p {
+                font-size: 0.9em;
+            }
+            
+            .quantum-header h5 {
+                font-size: 1em;
+            }
+            
+            .speaker-card img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .speaker-info h4 {
+                font-size: 1.1em;
+            }
+            
+            .venue-card {
+                padding: 15px;
+            }
+            
+            .btn-quantum {
+                padding: 10px 25px;
+                font-size: 13px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.6em;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) {
+            .speaker-card,
+            .organizer-card {
+                transform: none;
+            }
+            
+            .speaker-card:active,
+            .organizer-card:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader"></div>
+    
+    <header id="header">
+        <div class="header-slider">
+            <ul class="slides">
+                <li><img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" alt="A vibrant spiral galaxy representing the cosmos."></li>
+                <li><img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" alt="Artistic visualization of a black hole's event horizon and gravitational lensing."></li>
+                <li><img src="https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" alt="Abstract representation of warped spacetime or a Penrose diagram."></li>
+            </ul>
+        </div>
+        
+        <div id="menu" class="header-menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="index.html">Quantum Analogues</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#header">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#speakers">Speakers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#program">Program</a>
+                                </li>
+                                <!-- NEW PRESENTATIONS TAB -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#presentations">Talks</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="registration.html">Registration</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#organizers">Organizers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#venue">Venue</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#contact">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="header-cta">
+            <div class="quantum-header">
+                <p>September 15 – 16, 2025 // University of Luxembourg</p>
+                <h1 class="entry-title">Quantum Analogues</h1>
+                <a href="registration.html" class="btn btn-quantum" style="margin-top: 30px;">Register Now</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <section id="about" class="box">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="reveal-element">About The Workshop</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                    <p class="lead reveal-element">What have water waves, Bose-Einstein condensates, semiconductor polaritons and fibre optics in common with black holes and the expanding universe? They are all quantum analogues. An analogue is a physical system that mimics the physics of another system. For example, water going down the drain establishes the analogue of the event horizon for water waves if the flow velocity exceeds the wave velocity. Quantum analogues mimic not only the classical physics of another system, but the quantum physics. For example, Bose-Einstein condensates may produce the quantum Hawking radiation of black holes. The Hawking radiation of real black holes is all but obscured by the Cosmic Microwave Background (and even more so by accretion radiation) but not so in black hole analogues, and neither is particle creation and the Gibbons-Hawking radiation of the expanding universe. Laboratory analogues have given us a good, hands-on understanding of how these quantum processes work, that are critical to the connection between quantum mechanics, thermodynamics and gravity. These ideas have a good chance of resolving the recent tensions in cosmology by predicting of how the quantum vacuum generates what is called dark energy (for want of a more enlightening term). Quantum analogues have also become a meeting place of different communities, from fluid mechanics to astronomy, where ideas are exchanged that would otherwise remain in their scholarly boundaries, and where young researchers are educated to be open-mind.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="speakers" class="box">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="reveal-element">Speakers</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                </div>
+                <div class="row" id="speakerList">
+                    </div>
+            </div>
+        </section>
+
+        <section id="program" class="box">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="reveal-element">Workshop Schedule</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                </div>
+
+                <ul class="nav nav-tabs justify-content-center schedule-tabs reveal-element" id="scheduleTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="day1-tab" data-bs-toggle="tab" data-bs-target="#day1" type="button" role="tab" aria-controls="day1" aria-selected="true">Day 1: Sep 15</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="day2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button" role="tab" aria-controls="day2" aria-selected="false">Day 2: Sep 16</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content reveal-element" id="scheduleTabContent">
+                    <div class="tab-pane fade show active" id="day1" role="tabpanel" aria-labelledby="day1-tab">
+                        <div class="schedule-day-content">
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">08:15 - 08:45</div>
+                                <div class="schedule-details">
+                                    <h4><i class="fas fa-id-card fa-icon"></i>Registration</h4>
+                                    <p class="speaker-name">Welcome Desk</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">08:45 - 09:00</div>
+                                <div class="schedule-details">
+                                    <h4><i class="fas fa-microphone fa-icon"></i>Opening Remarks</h4>
+                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">09:00 - 10:00</div>
+                                <div class="schedule-details">
+                                    <h4>Hydrodynamic Analogues</h4>
+                                    <p class="speaker-name">Prof. Germain Rousseaux</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">10:00 - 11:00</div>
+                                <div class="schedule-details">
+                                    <h4>Quantum field simulator – what ultracold gases can offer</h4>
+                                    <p class="speaker-name">Prof. Markus Oberthaler</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">11:00 - 11:30</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee Break</h4></div>
+                            </div>
+                             <div class="schedule-entry">
+                                <div class="schedule-time">11:30 - 12:00</div>
+                                <div class="schedule-details">
+                                    <h4>Free-surface correlations on water flows with an analogue horizon</h4>
+                                    <p class="speaker-name">Prof. Scott Robertson</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">12:00 - 13:00</div>
+                                <div class="schedule-details">
+                                    <h4>Wave Control</h4>
+                                    <p class="speaker-name">Prof. Matthias Fink</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">13:00 - 14:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">14:00 - 14:30</div>
+                                <div class="schedule-details">
+                                    <h4>Introduction to the quantum vacuum</h4>
+                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">14:30 - 15:30</div>
+                                <div class="schedule-details">
+                                    <h4>Measuring vacuum fluctuations</h4>
+                                    <p class="speaker-name">Prof. Alfred Leitenstorfer</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">15:30 - 16:30</div>
+                                <div class="schedule-details">
+                                    <h4>Measuring vacuum correlations</h4>
+                                    <p class="speaker-name">Ms. Alexa Marina Herter</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">16:30 - 17:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee Break</h4></div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">17:00 - 17:30</div>
+                                <div class="schedule-details">
+                                    <h4>The right and wrong with quantum field theory</h4>
+                                    <p class="speaker-name">Prof. Alexandre Tkatchenko</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">17:30 - 18:00</div>
+                                <div class="schedule-details">
+                                    <h4>What makes the quantum weirdness useful?</h4>
+                                    <p class="speaker-name">Dr. Matthieu Sarkis</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">18:00 - 19:00</div>
+                                <div class="schedule-details">
+                                    <h4>Cosmological tensions</h4>
+                                    <p class="speaker-name">Dr. William Giarè</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">20:00 onwards</div>
+                                <div class="schedule-details">
+                                    <h4><i class="fas fa-glass-cheers fa-icon"></i>Gala Dinner</h4>
+                                    <p class="speaker-name" style="color: #2d3748; font-weight: normal;">
+                                        <strong>El Barrio Restaurante y Tapas Bar</strong><br>
+                                        <a href="https://www.google.com/maps/place/El+Barrio+Restaurante+y+Tapas+Bar/@49.6277224,6.1692472,15z/data=!4m6!3m5!1s0x47954f47a27a731d:0xb11c3476e8a04dc4!8m2!3d49.6277224!4d6.1692472!16s%2Fg%2F1tdylw9m" target="_blank">
+                                            2 Rue Erasme, 1468 Kirchberg Luxembourg
+                                            <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="day2" role="tabpanel" aria-labelledby="day2-tab">
+                        <div class="schedule-day-content">
+                            <div class="schedule-entry">
+                                <div class="schedule-time">09:00 - 10:00</div>
+                                <div class="schedule-details">
+                                    <h4>The Wigner–Smith Operator: A Key Tool for Applications in Wave Physics</h4>
+                                    <p class="speaker-name">Prof. Stefan Rotter</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">10:00 - 11:00</div>
+                                <div class="schedule-details">
+                                    <h4>TBD</h4>
+                                    <p class="speaker-name">Prof. Jörn Dunkel</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">11:00 - 11:30</div>
+                                <div class="schedule-details"><h4><i class="fas fa-mug-hot fa-icon"></i>Coffee Break</h4></div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">11:30 - 12:00</div>
+                                <div class="schedule-details">
+                                    <h4>Quantum Forces: Emergent Effects of the Dynamic Vacuum</h4>
+                                    <p class="speaker-name">Dr. Reza Karimpour</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">12:00 - 13:00</div>
+                                <div class="schedule-details">
+                                    <h4>Multiscale complexity of the brain</h4>
+                                    <p class="speaker-name">Prof. Alex Skupin</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">13:00 - 14:00</div>
+                                <div class="schedule-details"><h4><i class="fas fa-utensils fa-icon"></i>Lunch</h4></div>
+                            </div>
+                            <div class="schedule-entry">
+                                <div class="schedule-time">14:00 - 15:00</div>
+                                <div class="schedule-details">
+                                    <h4>Dynamics of stochastic quantum systems: from control to chaos (and back to control).</h4>
+                                    <p class="speaker-name">Prof. Aurelia Chenu</p>
+                                </div>
+                            </div>
+                            <div class="schedule-entry break-entry">
+                                <div class="schedule-time">15:00 - 15:15</div>
+                                <div class="schedule-details">
+                                    <h4><i class="fas fa-flag-checkered fa-icon"></i>Closing Remarks</h4>
+                                    <p class="speaker-name">Prof. Ulf Leonhardt</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW PRESENTATIONS SECTION -->
+        <section id="presentations" class="box">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="reveal-element">Talks</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                    <p class="lead reveal-element">Download the presentations from our speakers.</p>
+                </div>
+                <div class="row reveal-element">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="presentation-list">
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Two-Beam Electro-Optic Sampling: Experimental Analogy to Fermi’s Two-Atom Problem</h4>
+                                    <p>Alexa Herter</p>
+                                </div>
+                                <a href="talks/Alexa_Herter_Two-Beam Electro-Optic Sampling: Experimental Analogy to Fermi’s Two-Atom Problem.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Multiscale Complexity of the Brain
+– quantum approaches –</h4>
+                                    <p>Alexander Skupin</p>
+                                </div>
+                                <a href="talks/Alexander_Skupin_Quantum_Analouges_Workshop.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Dynamics of stochastic quantum systems: from control to chaos (and back to control)</h4>
+                                    <p>Aurelia Chenu</p>
+                                </div>
+                                <a href="talks/Aurelia_chenu_Dynamics of stochastic quantum systems: from control to chaos (and back to control).pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Cosmic Tensions</h4>
+                                    <p>William Giare</p>
+                                </div>
+                                <a href="talks/Cosmic Tensions_William_Giare_Luxemburg-2025.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Forces of the Quantum Vacuum</h4>
+                                    <p>Ulf Leonhardt</p>
+                                </div>
+                                <a href="talks/Forces_of_the_Quantum_Vaccum_Ulf_Leohardt.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Hydrodynamic Analogues</h4>
+                                    <p>Germain Rousseaux</p>
+                                </div>
+                                <a href="talks/Germain_ROUSSEAUX_Lux2025-short.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Quantum analogues in living and soft matter</h4>
+                                    <p>Jörn Dunkel</p>
+                                </div>
+                                <a href="talks/Jorn_Dunkel_Quantum analogues in living and soft matter.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>A Direct Approach to Electromagnetic
+Quantum Fluctuations</h4>
+                                    <p>Alfred Leitenstorfer</p>
+                                </div>
+                                <a href="talks/QuantumAnalogues_leitenstorfer_250915.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Quantum Forces</h4>
+                                    <p>Reza Karimpour</p>
+                                </div>
+                                <a href="talks/Reza_Karimpour_Quantum_Forces.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>The Wigner–Smith Operator: A Key Tool for Applications in Wave Physics</h4>
+                                    <p>Stefan Rotter</p>
+                                </div>
+                                <a href="talks/Stefan_Rotter_The Wigner–Smith Operator_A Key Tool for Applications_in Wave Physics.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="organizers" class="box">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="reveal-element">Organizers</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                </div>
+                <div class="row" id="organizerList">
+                    </div>
+            </div>
+        </section>
+
+        <section id="venue" class="box">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="reveal-element">Venue & Info</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                </div>
+                <div class="row reveal-element">
+                    <div class="col-md-6">
+                        <div class="venue-card">
+                            <h4><i class="fas fa-university"></i> Workshop Location</h4>
+                            <p>
+                                <strong>Bâtiment des Sciences, Campus Limpertsberg</strong><br>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Bâtiment+des+Sciences,+1510+Limpertsberg+Luxembourg" target="_blank">
+                                    1510 Limpertsberg Luxembourg
+                                    <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="venue-card">
+                            <h4><i class="fas fa-bus"></i> Free Public Transport</h4>
+                            <p>All public transport in Luxembourg is free! Use buses or the tram to easily reach the campus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="box">
+            <div class="container text-center">
+                <div class="section-title">
+                    <h2 class="reveal-element">Contact</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                </div>
+                <p class="lead reveal-element">For any questions, please contact the workshop coordinators:</p>
+                <h3 class="reveal-element"><a href="mailto:yolande.edjogo@uni.lu"></a>Yolande Edjogo</a></h3>
+                <h3 class="reveal-element"><a href="mailto:upala.mukhopadhyay@uni.lu">Dr. Upala Mukhopadhyay</a></h3>
+                <h3 class="reveal-element"><a href="mailto:dhruv.sharma@uni.lu">Dhruv Sharma</a></h3>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container text-center">
+            <img src="images/unilul.png" alt="University of Luxembourg Logo" class="footer-logo">
+            <p>Funded by the Institute for Advanced Studies (IAS) of the University of Luxembourg.</p>
+            <p>© 2025 University of Luxembourg. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal-backdrop" id="abstractModalBackdrop"></div>
+    <div class="modal-content-wrapper" id="abstractModal">
+        <div class="modal-header">
+            <h3 id="modalSpeakerName" class="modal-title">Speaker Name</h3>
+            <button type="button" class="modal-close" id="modalCloseBtn">×</button>
+        </div>
+        <div class="modal-body">
+            <h4 id="modalTalkTitle" class="abstract-title">Talk Title</h4>
+            <div id="modalAbstractText" class="abstract-text"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Speaker Data with IDs and Abstract
+            const speakers = [
+                {
+                    id: "leitenstorfer",
+                    name: "Prof. Alfred Leitenstorfer",
+                    affiliation: "University of Konstanz",
+                    topic: "A Direct Approach to Electromagnetic Quantum Fluctuations",
+                    image: "images/speakers/leitenstorfer.jpg",
+                    link: "https://www.leitenstorfer.uni-konstanz.de/personen/prof-dr-alfred-leitenstorfer/",
+                    abstract: `<p>In his lectures at University of Chicago in 1929, Werner Heisenberg presented an uncertainty relation for the electromagnetic field [1]:</p>
+$$
+\\Delta E_{x} \\Delta H_{y} \\geq \\frac{hc}{(\\delta l)^4}
+$$
+<p>Here, $\\Delta E_{x}$ and $\\Delta H_{y}$ are the fluctuation amplitudes of the transverse electric and magnetic fields, respectively. $(\\delta l)^{4}$ denotes a four-dimensional space-time volume over which a measurement apparatus averages. A few years later, Niels Bohr and Leon Rosenfeld worked out general but fairly complex expressions for the electromagnetic uncertainty, considering also the nonlocal aspects which correlate different regions of space and time according to Maxwell's equations [2].</p>
+<p>Still, it is clear already from Heisenberg's first sketch that even the ground state of the electromagnetic field contains finite noise amplitudes - the so-called vacuum fluctuations - although it bears zero intensity. In a quantum-field picture, photons can spontaneously emerge and decay on sufficiently short scales of space and time. The energies and momenta of these virtual excitations are limited by the uncertainty principle. Since the photon represents its own antiparticle, spontaneous generation and annihilation of a photon may also be viewed as a virtual photon-antiphoton pair. Analogously, virtual pairs of particles and antiparticles with finite rest mass such as electron-positron pairs are populating the quantum vacuum as well. Yet, a finite rest energy sets an upper bound for the timescale where the properties of such massive virtual species might be studied directly. Owing to their massless character, this limit is absent for photons. As soon as experimental time resolution of the electric field amplitude becomes better than half an oscillation cycle, virtual photons should become readily observable. Indeed, it turns out that sufficiently sensitive approaches to detect optical electric fields provide a fairly direct perspective on such quantum phenomena. The presentation will feature the development of our understanding over the last 1.5 decades, present the underlying methodology and try to summarize the status of theoretical work.</p>
+<p>In conventional quantum optics, the quantum state of light is accessed in a time-averaged way via homodyne detection or photon correlation measurements. Instead, electro-optic sampling [3] provides subcycle access to the coherent electric field amplitude directly in the time domain. Working with few-femtosecond laser pulses enables a bandwidth beyond 100 THz, equivalent to the entire mid-infrared spectral range. Motivated by some early steps towards quantum experiments with subcycle resolution in solid-state nanostructures [4], generalizing this technique to quantum fields became attractive and it took some years to ponder about the basic concepts for a time-domain access to this context. The first set of experiments led to direct detection of electric-field vacuum fluctuations [5]. To harvest the full potential of this development, not only the bare ground state of electromagnetic radiation is to be studied but also more structured quantum fields. One prime example would be squeezed states where the fluctuation amplitude of one quadrature, e.g. the electric field amplitude, is reduced in one space-time volume that is sampled at a specific time delay. Consequently, the variance has to increase in another quadrature or spatio-temporal volume. In a hand-waving picture, such conditions are achieved by cross-phase modulation of the vacuum fluctuations where a local change of the refractive index of a nonlinear medium leads to a depletion of vacuum amplitude in one interval and a pileup in another one. In a first quest towards this end, we thought we had generated and accessed such noise patterns in time with both negative and positive deviations from the bare vacuum amplitude [6]. Carrying out the measurements with a more powerful pump source, however, showed that the first data were heavily contaminated by artefacts. In brief, our 6-fs probe pulses carried Poissonian photon statistics only regarding their integrated spectrum but there is some excess amplitude noise anti-correlating the high- and low-frequency regions [7]. Together with some residual coherent field amplitude, an inherent presence of the Hilbert transform of this field in the electro-optic signals [8] and some minor deviations of the optical bias in the ellipsometer from $\\lambda/4$, noise changes very similar to those expected for a squeezed vacuum field emerged.</p>
+<p>At present, we are working towards generation and time-domain detection of intense squeezed vacua without significant coherent amplitudes by pumping an orientationally patterned GaAs parametric downconverter with intense pulses at 75 THz from a degenerate optical parametric oscillator [9]. In addition, the excess noise in our ultrabroadband probe pulses was minimized by designing Er:fiber modelocked laser systems that exhibit linewidths of their femtosecond frequency combs of order 1 kHz over a broad spectral range [10]. A first theory of quantum electro-optic sampling and generation of nonclassical states of light that are synchronal to the femtosecond sampling pulses was based on a paraxial approach to nonlinear quantum optics [11]. Meanwhile, further aspects were explored theoretically such as subcycle squeezing [12], its analogies to radiation emitted by rapidly accelerating objects in cosmology [13], the roles of quantum susceptibilities [14] and back action [15] as well as a fully relativistic description based on quantum field theory [16]. In total, once it is fully established, time-domain quantum optics might provide a variety of opportunities for science ranging from e.g. quantum spectroscopy of collective excitations and correlated states in condensed matter all the way to a testing ground for relativistic quantum physics in curved spacetime.</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>W. Heisenberg, "The Physical Principles of the Quantum Theory", Dover Publishing (1949).</li>
+    <li>N. Bohr and L. Rosenfeld, "Zur Frage der Messbarkeit der elektromagnetischen Feldgrössen", Kgl. Danske Vid. Sels., Math.-fys. Medd. XII, 8 (1933).</li>
+    <li>I.-C. Benea-Chelmus, J. Faist, A. L., A. S. Moskalenko, I. Pupeza, D. V. Seletskiy, K. L. Vodopyanov, "Electro-optic sampling of classical and quantum light (minireview)," Optica 12, 546 (2025).</li>
+    <li>G. Günter, A. A. Anappara, J. Hees, A. Sell, G. Biasiol, L. Sorba, S. De Liberato, C. Ciuti, A. Tredicucci, A. L., and R. Huber, "Sub-cycle switch-on of ultrastrong light-matter interaction," Nature 458, 178 (2009).</li>
+    <li>C. Riek, D.V. Seletskiy, A. S. Moskalenko, J.F. Schmidt, P. Krauspe, S. Eckart, S. Eggert, G. Burkard, and A. L., "Direct sampling of electric-field vacuum fluctuations," Science 350, 420 (2015).</li>
+    <li>C. Riek, P. Sulzer, M. Seeger, A. S. Moskalenko, G. Burkard, D. V. Seletskiy, and A. L., "Subcycle quantum electrodynamics," Nature 541, 376 (2017).</li>
+    <li>P. Sulzer, C. Beckh, A. Liehl, J. Huster, K. R. Keller, M. Cimander, P. Henzler, C. Traum, C. Riek, D. V. Seletskiy, and A. L., "Passive elimination of correlated amplitude fluctuations in ultrabroadband supercontinua from highly nonlinear fibers by three-wave mixing," Opt. Lett. 45, 4714 (2020).</li>
+    <li>P. Sulzer, K. Oguchi, J. Huster, M. Kizmann, T. L. M. Guedes, A. Liehl, C. Beckh, A. S. Moskalenko, G. Burkard, D. V. Seletskiy, and A. L., "Determination of the electric field and its Hilbert transform in femtosecond electro-optic sampling," Phys. Rev. A 101, 033821 (2020).</li>
+    <li>H. Kempf, A. Muraviev, F. Breuning, P. G. Schunemann, R. Tenne, A. L., and K. Vodopyanov, "Direct sampling of femtosecond electric-field waveforms from an optical parametric oscillator," APL Photonics 9, 036111 (2024).</li>
+    <li>S. R. Hutter, A. Seer, T. König, R. Herda, D. Hertzsch, H. Kempf, R. Wilk, and A. L., "Femtosecond Frequency Combs with Few-kHz Passive Stability over an Ultrabroadband Spectral Range," Laser Photonics Rev. 17, 2200907 (2023).</li>
+    <li>A. S. Moskalenko, C. Riek, D. V. Seletskiy, G. Burkard, and A. L., "Paraxial Theory of Direct Electro-optic Sampling of the Quantum Vacuum", Phys. Rev. Lett. 115, 263601 (2015).</li>
+    <li>M. Kizmann, T. L. M. Guedes, D. V. Seletskiy, A. S. Moskalenko, A. L., and G. Burkard, "Subcycle squeezing of light from a time flow perspective," Nature Phys. 15, 960 (2019).</li>
+    <li>M. Kizmann, A. S. Moskalenko, A.L., G. Burkard, and S. Mukamel, "Quantum Susceptibilities in Time-Domain Sampling of Electric Field Fluctuations," Laser Photonics Rev. 16, 2100423 (2022).</li>
+    <li>T. L. M. Guedes, M. Kizmann, D. V. Seletskiy, A. L., G. Burkard, and A. S. Moskalenko, "Spectra of Ultrabroadband Squeezed Pulses and the Finite-Time Unruh-Davies Effect," Phys. Rev. Lett. 122, 053604 (2019).</li>
+    <li>T. L. M. Guedes, I. Vakulchyk, D. V. Seletskiy, A. L., A. S. Moskalenko, and G. Burkard, "Back action in quantum electro-optic sampling of electromagnetic vacuum fluctuations," Phys. Rev. Res. 5, 013151 (2023).</li>
+    <li>S. Onoe, T. L. M. Guedes, A. S. Moskalenko, A. L., G. Burkard, and T. C. Ralph, "Realizing a rapidly switched Unruh-DeWitt detector through electro-optic sampling of the electromagnetic vacuum," Phys. Rev. D 105, 056023 (2022).</li>
+</ol>`
+                },
+                {
+                    id: "oberthaler",
+                    name: "Prof. Markus Oberthaler",
+                    affiliation: "Heidelberg University",
+                    topic: "Quantum field simulator – what ultracold gases can offer",
+                    image: "images/speakers/oberthaler.jpg",
+                    link: "https://www.kip.uni-heidelberg.de/personen/552",
+                    abstract: "Ultracold gases provide an extremely versatile experimental platform for investigating fundamental issues in quantum field theory. In this talk, I will provide an overview of the primary tools used to prepare initial states, the dynamic modification of microscopic parameters, and various detection methods. I will then present recent results on quantum field dynamics in controlled spacetimes as explicit examples. A key observation is particle production in time-dependent metrics in the context of cosmology, with a power-law dependence of the scale factor, and the more general question of quantum dynamics in a temporally oscillating metric. Finally, I will share my thoughts on implementing particle detectors for quantum fields in ultracold gases."
+                },
+                {
+                    id: "chenu",
+                    name: "Prof. Aurelia Chenu",
+                    affiliation: "University of Luxembourg",
+                    topic: "Dynamics of stochastic quantum systems: from control to chaos (and back to control).",
+                    image: "images/speakers/chenu.png",
+                    link: "https://www.uni.lu/fstm-en/people/aurelia-chenu/",
+                    abstract: `<p>Quantum experiments are performed in noisy platforms. In NISQ devices, realistic setups can be described by open systems or noisy Hamiltonians. Starting from a generic noisy Hamiltonian, I will first present a scheme to control the thermalization of a harmonic oscillator in arbitrary time [1].</p>
+<p>Then, going beyond the noise-averaged density matrix, I will introduce the concept of stochastic operator variance (SOV) of an observable. The SOV [2] is an operator that characterizes the deviation of any operator from the noise-averaged operator in a stochastic evolution governed by the Hamiltonian. As such, it is relevant in the quantum simulation of open systems using NISQ devices, e.g., to engineer a given dissipative evolution. Surprisingly, we find that the evolution of the noise-averaged variance relates to an out-of-time-order correlator (OTOC), which connects fluctuations of the system with scrambling. This connection may allow computing the Lyapunov exponent and experimentally access OTOCs without the need to invert the sign of the Hamiltonian. I will illustrate the results in the stochastic LMG model, and show how noise changes the phase diagram of the system.</p>
+<p>In a last part, I will focus on the dynamics generated by a stochastic non-Hermitian Hamiltonian. We introduce a new type of non-linear master equation. Looking at the stochastic dissipative qubit, we find that noise can be used to control the dynamics, mainly to control the steady state and convergence time to it [3].</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>L. Dupays, I. L. Egusquiza, A. del Campo, and A. Chenu. Superadiabatic thermalization of a quantum oscillator by engineered dephasing, Phys. Rev. Res. 2:033178 (2020)</li>
+    <li>P. Martinez-Azcona, A.Kundu, A. del Campo, and A. Chenu, PRL 131:160202 (2023).</li>
+    <li>P. Martinez-Azcona, A.Kundu, A. Saxena, A. del Campo, and A. Chenu, PRL (2025).</li>
+</ol>`
+                },
+                {
+                    id: "giare",
+                    name: "Dr. William Giarè",
+                    affiliation: "University of Sheffield",
+                    topic: "Cosmological tensions",
+                    image: "images/speakers/giare.jpg",
+                    link: "https://www.williamgiare.com/"
+                },
+                {
+                    id: "herter",
+                    name: "Ms. Alexa Marina Herter",
+                    affiliation: "ETH Zurich",
+                    topic: "Measuring vacuum correlations",
+                    image: "images/speakers/herter.jpg",
+                    link: "https://www.phys.ethz.ch/the-department/people/person-detail.MjY5OTcw.TGlzdC81MTUsMTE3MjU5OTI5OQ==.html"
+                },
+                {
+                    id: "tkatchenko",
+                    name: "Prof. Alexandre Tkatchenko",
+                    affiliation: "University of Luxembourg",
+                    topic: "The right and wrong with quantum field theory",
+                    image: "images/speakers/alex.jpg",
+                    link: "https://www.uni.lu/fstm-en/people/alexandre-tkatchenko/"
+                },
+                {
+                    id: "fink",
+                    name: "Prof. Matthias Fink",
+                    affiliation: "ESPCI Paris",
+                    topic: "Wave Control",
+                    image: "images/speakers/fink.jpeg",
+                    link: "https://en.wikipedia.org/wiki/Mathias_Fink"
+                },
+                {
+                    id: "rousseaux",
+                    name: "Prof. Germain Rousseaux",
+                    affiliation: "University of Poitiers",
+                    topic: "Hydrodynamic Analogues",
+                    image: "images/speakers/rousseaux.jpg",
+                    link: "https://germain-rousseaux.cnrs.fr/"
+                },
+                {
+                    id: "robertson",
+                    name: "Prof. Scott Robertson",
+                    affiliation: "University of Poitiers",
+                    topic: "Free-surface correlations on water flows with an analogue horizon",
+                    image: "images/speakers/robertson.jpg", 
+                    link: "#",
+                    abstract: `<p>As a realisation of field theory in curved spacetime, Analogue Gravity finds great utility in correlation functions. In particular, such correlations capture the pairwise nature of the analogue of Hawking radiation in an effective spacetime with a black-hole horizon [1-3]. More generally, they can provide valuable information about the behaviour and structure of the effective spacetime and the wave scattering induced on it. In this talk, I will describe experimentally observed correlations in the free-surface deformations of transcritical water flows, in both black-hole [4] and white-hole [5] configurations. Particular attention will be paid to those features that suggest the occurrence of the Hawking effect.</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>R. Balbinot et al., Phys. Rev. A 78, 021603(R) (2008)</li>
+    <li>I. Carusotto et al., New J. Phys. 10, 103001 (2008)</li>
+    <li>J. R. M. de Nova et al., Nature 569, 688 (2019)</li>
+    <li>L.-P. Euvé et al., Phys. Rev. Lett. 124, 141101 (2020)</li>
+    <li>J. Fourdrinoy et al., Phys. Rev. D 105, 085022 (2022)</li>
+</ol>`
+                },
+                {
+                    id: "sarkis",
+                    name: "Dr. Matthieu Sarkis",
+                    affiliation: "University of Luxembourg",
+                    topic: "What makes the quantum weirdness useful?",
+                    image: "images/speakers/sarkis.jpg",
+                    link: "https://www.uni.lu/fstm-en/people/matthieu-sarkis/",
+                    abstract: "Quantum technologies draw their power from a specific kind of nonclassicality often called 'magic'—patterns in a quantum state that can’t be explained by ordinary (classical) probabilities. Unlike entanglement alone, magic is a practical marker of when a quantum system becomes hard to simulate and when truly quantum operations appear. In this talk, after introducing a standard measure of magic in finite-dimensional quantum systems called the Stabilizer Renyi Entropy (SRE), I will provide a first-principle 'derivation' of this quantity. Our approach allows us then to naturally propose a measure of magic for hybrid boson-fermion systems. We also show how the notion of magic, rooted in quantum information theory, can be relevant to quantum chemistry and bond formation."
+                },
+                {
+                    id: "leonhardt",
+                    name: "Prof. Ulf Leonhardt",
+                    affiliation: "Weizmann Institute of Science",
+                    topic: "Introduction to the quantum vacuum",
+                    image: "images/speakers/ulf.jpg",
+                    link: "https://www.weizmann.ac.il/complex/prof-ulf-leonhardt"
+                },
+                {
+                    id: "rotter",
+                    name: "Prof. Stefan Rotter",
+                    affiliation: "Vienna University of Technology",
+                    topic: "The Wigner–Smith Operator: A Key Tool for Applications in Wave Physics",
+                    image: "images/speakers/rotter.jpg",
+                    link: "https://rottergroup.itp.tuwien.ac.at/",
+                    abstract: `<p>In my talk, I will provide an overview of recent advances in understanding and controlling wave propagation, as enabled by the concept of the Wigner–Smith operator. Originally proposed by Eugene Wigner and Felix Smith in the context of scattering time delay, this operator has meanwhile been generalised [1,2] to serve as a key tool in a variety of applications, including wave focusing [2,3], maximising optical forces and torques [2,4], optical trapping [5], efficiently cooling levitated particles [6], transmission through multi-mode fibers [7], estimating system parameters [8], and optical inverse-design [9]. Furthermore, I will demonstrate that the generalised Wigner–Smith operator is strongly connected to the forces of the quantum vacuum [10], and its expectation values can be unambiguously decomposed into geometric and dynamical parts [11]. This generalises Berry's seminal concept of the geometric phase to a broad class of scattering problems.</p>
+<hr>
+<h3>References</h3>
+<ol>
+    <li>Ambichl et al., Phys. Rev. Lett. 119, 033903 (2017).</li>
+    <li>Horodynski et al., Nature Photonics 14, 149 (2020).</li>
+    <li>Goıcoechea et al., Phys. Rev. Lett. 134, 183802 (2025).</li>
+    <li>Orazbayev et al., Nature Physics 14, 149 (2024).</li>
+    <li>Butaite et al., Sci. Adv. 10, eadi7792 (2024).</li>
+    <li>Hüpfl et al., Phys. Rev. Lett. 130, 083203 (2023).</li>
+    <li>Matthès et al., Phys. Rev. X 11, 021060 (2021).</li>
+    <li>Bouchet et al., Nature Physics 17, 564 (2021).</li>
+    <li>Horodynski et al., Nature 607, 281 (2022).</li>
+    <li>Rachbauer et al., J. Opt. Soc. Am. B 41, 2122 (2024).</li>
+    <li>Bliokh et al., arXiv:2506.07144.</li>
+</ol>`
+                },
+                {
+                    id: "dunkel",
+                    name: "Prof. Jörn Dunkel",
+                    affiliation: "Massachusetts Institute of Technology",
+                    topic: "TBD",
+                    image: "images/speakers/dunkel.png",
+                    link: "https://math.mit.edu/~dunkel/"
+                },
+                {
+                    id: "skupin",
+                    name: "Prof. Alex Skupin",
+                    affiliation: "University of Luxembourg",
+                    topic: "Multiscale complexity of the brain",
+                    image: "images/speakers/skupin.png",
+                    link: "https://www.uni.lu/lcsb-en/people/alexander-skupin/"
+                },
+                {
+                    id: "karimpour",
+                    name: "Dr. Reza Karimpour",
+                    affiliation: "University of Luxembourg",
+                    topic: "Quantum Forces: Emergent Effects of the Dynamic Vacuum",
+                    image: "images/speakers/reza.jpg",
+                    link: "https://www.uni.lu/fstm-en/people/mohammad-reza-karimpour/"
+                }
+            ];
+
+            // Organizer Data
+            const organizers = [
+                {
+                    name: "Prof. Alexandre Tkatchenko",
+                    affiliation: "University of Luxembourg",
+                    image: "images/speakers/alex.jpg",
+                    link: "https://www.uni.lu/fstm-en/people/alexandre-tkatchenko/"
+                },
+                {
+                    name: "Prof. Ulf Leonhardt",
+                    affiliation: "Weizmann Institute of Science",
+                    image: "images/speakers/ulf.jpg",
+                    link: "https://www.weizmann.ac.il/complex/prof-ulf-leonhardt"
+                }
+            ];
+
+            // Generate CLICKABLE Speaker Cards
+            const speakerList = $('#speakerList');
+            speakers.forEach((speaker, index) => {
+                const abstractButton = speaker.abstract ?
+                    `<button class="btn-abstract" data-speaker-id="${speaker.id}">Read Abstract <i class="fas fa-search-plus"></i></button>` : '';
+
+                const speakerCard = `
+                    <div class="col-md-4 col-sm-6 reveal-element">
+                        <div class="speaker-card">
+                            <a href="${speaker.link}" target="_blank" class="speaker-link">
+                                <img src="${speaker.image}" alt="${speaker.name}" class="img-responsive" onerror="this.src='https://placehold.co/250x250/EFEFEF/AAAAAA&text=Photo'; this.onerror=null;">
+                            </a>
+                            <div class="speaker-info">
+                                <h4>${speaker.name}</h4>
+                                <h5>${speaker.affiliation}</h5>
+                                <p>${speaker.topic}</p>
+                                ${abstractButton}
+                            </div>
+                        </div>
+                    </div>`;
+                speakerList.append(speakerCard);
+                
+                if ((index + 1) % 3 === 0) {
+                    speakerList.append('<div class="clearfix visible-md-block visible-lg-block"></div>');
+                }
+            });
+
+            // Generate CLICKABLE Organizer Cards
+            const organizerList = $('#organizerList');
+            organizers.forEach(organizer => {
+                const organizerCard = `
+                    <div class="col-md-6 col-sm-6 reveal-element">
+                        <a href="${organizer.link}" target="_blank" class="speaker-link">
+                            <div class="speaker-card">
+                                <img src="${organizer.image}" alt="${organizer.name}" class="img-responsive" onerror="this.src='https://placehold.co/250x250/EFEFEF/AAAAAA&text=Photo'; this.onerror=null;">
+                                <div class="speaker-info">
+                                    <h4>${organizer.name}</h4>
+                                    <h5>${organizer.affiliation}</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>`;
+                organizerList.append(organizerCard);
+            });
+
+            // Preloader
+            setTimeout(function() {
+                $('body').addClass('loaded');
+            }, 1000);
+
+            // Header Slider
+            if ($('.header-slider').length) {
+                $('.header-slider .slides').imagesLoaded(function() {
+                    $('.header-slider').flexslider({
+                        animation: "fade",
+                        controlNav: false,
+                        directionNav: false,
+                        slideshowSpeed: 4000,
+                        animationSpeed: 1000,
+                        pauseOnAction: false,
+                        smoothHeight: true
+                    });
+                });
+            }
+
+            // Abstract Modal Logic
+            const modal = $('#abstractModal');
+            const modalBackdrop = $('#abstractModalBackdrop');
+            const modalSpeakerName = $('#modalSpeakerName');
+            const modalTalkTitle = $('#modalTalkTitle');
+            const modalAbstractText = $('#modalAbstractText');
+
+            function openModal(speaker) {
+                modalSpeakerName.text(speaker.name);
+                modalTalkTitle.text(speaker.topic);
+                
+                modalAbstractText.html(speaker.abstract);
+
+                if (window.MathJax) {
+                    MathJax.typesetPromise([modalAbstractText[0]]).catch((err) => console.log(err.message));
+                }
+                
+                modalBackdrop.addClass('show');
+                modal.addClass('show');
+            }
+
+            function closeModal() {
+                modalBackdrop.removeClass('show');
+                modal.removeClass('show');
+            }
+
+            $(document).on('click', '.btn-abstract', function() {
+                const speakerId = $(this).data('speaker-id');
+                const speaker = speakers.find(s => s.id === speakerId);
+                if (speaker && speaker.abstract) {
+                    openModal(speaker);
+                }
+            });
+
+            $('#modalCloseBtn').on('click', closeModal);
+            modalBackdrop.on('click', closeModal);
+
+            // Mobile Menu Toggle
+            $('.navbar-toggler').on('click', function() {
+                $('#menu').toggleClass('open-menu');
+            });
+            
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.navbar').length) {
+                    $('.navbar-collapse').removeClass('show');
+                    $('#menu').removeClass('open-menu');
+                }
+            });
+            
+            $('.navbar-collapse').on('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // Smooth Scrolling
+            $('a[href*="#"]:not([href="#"])').on('click', function() {
+                if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        var offset = $(window).width() < 768 ? 80 : 70;
+                        
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - offset
+                        }, 1000);
+                        
+                        $('.navbar-collapse').removeClass('show');
+                        
+                        return false;
+                    }
+                }
+            });
+
+            // Animate on scroll
+            function revealOnScroll() {
+                var $elems = $('.reveal-element');
+                var winheight = $(window).height();
+                $elems.each(function() {
+                    var $this = $(this);
+                    var pos = $this.offset().top;
+                    if (pos < $(window).scrollTop() + winheight - 50) {
+                        $this.addClass('revealed');
+                    }
+                });
+            }
+
+            $(window).scroll(function() {
+                revealOnScroll();
+            });
+            
+            revealOnScroll();
+            
+            // Active menu highlighting
+            $(window).scroll(function() {
+                var scrollDistance = $(window).scrollTop() + ($(window).width() < 768 ? 100 : 80);
+                
+                $('section').each(function(i) {
+                    if ($(this).position().top <= scrollDistance) {
+                        $('.navbar-nav a.active').removeClass('active');
+                        $('.navbar-nav a').eq(i).addClass('active');
+                    }
+                });
+            }).scroll();
+            
+            // Improve touch performance on mobile
+            if ('ontouchstart' in window) {
+                $('body').addClass('touch-device');
+            }
+        });
+    </script>
+</body>
+</html>

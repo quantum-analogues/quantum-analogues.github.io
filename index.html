@@ -452,6 +452,54 @@
             color: var(--color-accent-2);
         }
 
+        /* --- Presentation List --- */
+        .presentation-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .presentation-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .presentation-item:hover {
+            border-color: var(--color-accent-1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .presentation-info h4 {
+            font-size: 1.1em;
+            margin-bottom: 2px;
+        }
+        .presentation-info p {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+        .btn-download {
+            background: var(--color-accent-1);
+            color: white;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .btn-download:hover {
+            background: var(--color-accent-2);
+            color: white;
+        }
+        .btn-download i {
+            margin-left: 8px;
+        }
+
         /* --- Abstract Modal --- */
         .modal-backdrop {
             position: fixed;
@@ -767,6 +815,15 @@
                 font-size: 1em;
                 padding: 12px 15px;
             }
+
+            .presentation-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+            .presentation-info {
+                margin-bottom: 15px;
+            }
             
             /* Mobile Contact Section */
             #contact h3 {
@@ -885,6 +942,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#program">Program</a>
+                                </li>
+                                <!-- NEW PRESENTATIONS TAB -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#presentations">Talks</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="registration.html">Registration</a>
@@ -1079,7 +1140,7 @@
                             <div class="schedule-entry">
                                 <div class="schedule-time">10:00 - 11:00</div>
                                 <div class="schedule-details">
-                                    <h4>TBD</h4>
+                                    <h4>Quantum analogues in living and soft matter</h4>
                                     <p class="speaker-name">Prof. Jörn Dunkel</p>
                                 </div>
                             </div>
@@ -1124,6 +1185,96 @@
                 </div>
             </div>
         </section>
+
+        <!-- NEW PRESENTATIONS SECTION -->
+        <section id="presentations" class="box">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="reveal-element">Talks</h2>
+                    <div class="quantum-divider reveal-element"></div>
+                    <p class="lead reveal-element">Download the presentations from our speakers.</p>
+                </div>
+                <div class="row reveal-element">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="presentation-list">
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Two-Beam Electro-Optic Sampling: Experimental Analogy to Fermi’s Two-Atom Problem</h4>
+                                    <p>Alexa Herter</p>
+                                </div>
+                                <a href="talks/Alexa_Herter_Two-Beam Electro-Optic Sampling: Experimental Analogy to Fermi’s Two-Atom Problem.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Multiscale Complexity of the Brain
+– quantum approaches –</h4>
+                                    <p>Alexander Skupin</p>
+                                </div>
+                                <a href="talks/Alexander_Skupin_Quantum_Analouges_Workshop.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Dynamics of stochastic quantum systems: from control to chaos (and back to control)</h4>
+                                    <p>Aurelia Chenu</p>
+                                </div>
+                                <a href="talks/Aurelia_chenu_Dynamics of stochastic quantum systems: from control to chaos (and back to control).pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Cosmic Tensions</h4>
+                                    <p>William Giare</p>
+                                </div>
+                                <a href="talks/Cosmic Tensions_William_Giare_Luxemburg-2025.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Forces of the Quantum Vacuum</h4>
+                                    <p>Ulf Leonhardt</p>
+                                </div>
+                                <a href="talks/Forces_of_the_Quantum_Vaccum_Ulf_Leohardt.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Hydrodynamic Analogues</h4>
+                                    <p>Germain Rousseaux</p>
+                                </div>
+                                <a href="talks/Germain_ROUSSEAUX_Lux2025-short.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Quantum analogues in living and soft matter</h4>
+                                    <p>Jörn Dunkel</p>
+                                </div>
+                                <a href="talks/Jorn_Dunkel_Quantum analogues in living and soft matter.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>A Direct Approach to Electromagnetic
+Quantum Fluctuations</h4>
+                                    <p>Alfred Leitenstorfer</p>
+                                </div>
+                                <a href="talks/QuantumAnalogues_leitenstorfer_250915.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                             <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>Quantum Forces</h4>
+                                    <p>Reza Karimpour</p>
+                                </div>
+                                <a href="talks/Reza_Karimpour_Quantum_Forces.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                            <div class="presentation-item">
+                                <div class="presentation-info">
+                                    <h4>The Wigner–Smith Operator: A Key Tool for Applications in Wave Physics</h4>
+                                    <p>Stefan Rotter</p>
+                                </div>
+                                <a href="talks/Stefan_Rotter_The Wigner–Smith Operator_A Key Tool for Applications_in Wave Physics.pdf" class="btn-download" download>Download <i class="fas fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="organizers" class="box">
             <div class="container">
                 <div class="section-title">
